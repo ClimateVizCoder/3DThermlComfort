@@ -2,14 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
 
+  // Simplified redirects configuration
   async redirects() {
     return [
-      {
-        source: "/(.*)", // Alle Routen abdecken
-        has: [{ type: "protocol", value: "http" }], // Prüfen, ob die Anfrage über HTTP kommt
-        destination: "https://example.com/:path*", // Umleiten auf HTTPS (ersetze "example.com" mit deiner Domain)
-        permanent: true,
-      },
+      // Removed the problematic redirect rule
     ]
   },
 
@@ -40,6 +36,13 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
+    domains: ["urlyaqdfmocz1d9x.public.blob.vercel-storage.com", "hebbkx1anhila5yf.public.blob.vercel-storage.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.vercel-storage.com",
+      },
+    ],
   },
 }
 
