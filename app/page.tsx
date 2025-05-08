@@ -1531,8 +1531,8 @@ const Home: React.FC = () => {
                     <a
                       href={
                         language === "en"
-                          ? "https://urlyaqdfmocz1d9x.public.blob.vercel-storage.com/cv_ManuelKipp_wiss_en_signed-UarZFCsWWvlUGmzQEkJo0jqGWM0jJp.pdf"
-                          : "https://urlyaqdfmocz1d9x.public.blob.vercel-storage.com/cv_ManuelKipp_wiss_signed-u5ErFruEUeIf8HGvNHl1DI9xW94cdz.pdf"
+                          ? "https://urlyaqdfmocz1d9x.public.blob.vercel-storage.com/cv_ManuelKipp_wiss_en2_signed-FlzrIhXcNmiOiROs9wF8kqqgN2pgdt.pdf"
+                          : "https://urlyaqdfmocz1d9x.public.blob.vercel-storage.com/cv_ManuelKipp_wiss2_signed-Ll0YBORKdoptEr8mgBFCFwpA7jFWK3.pdf"
                       }
                       target="_blank"
                       rel="noopener noreferrer"
