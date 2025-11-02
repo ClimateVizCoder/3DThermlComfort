@@ -89,6 +89,8 @@ export const translations = {
     },
     career: {
       title: "Werdegang",
+      professional: "Berufserfahrung",
+      selfEmployed: "Selbstständigkeit",
       academic: "Akademisch",
       practical: "Praktisch",
     },
@@ -200,6 +202,8 @@ export const translations = {
     },
     career: {
       title: "Career",
+      professional: "Professional Experience",
+      selfEmployed: "Self-Employment",
       academic: "Academic",
       practical: "Practical",
     },

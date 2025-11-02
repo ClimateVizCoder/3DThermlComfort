@@ -34,7 +34,7 @@ import {
 import { GiMountainClimbing, GiSoccerBall, GiRaceCar } from "react-icons/gi"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { toast } from "@/components/ui/use-toast"
+import { toast } from "@/components/ui/toast"
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
 import Header from "@/components/header"
 import TransparentDivider from "@/components/TransparentDivider"
@@ -218,6 +218,42 @@ const images = [
 
 // Berufserfahrung, Veröffentlichungen usw.
 const erfahrungContent = {
+  berufserfahrung: [
+    {
+      title: {
+        de: "Technischer & Kaufmännischer Leiter",
+        en: "Technical & Commercial Manager",
+      },
+      year: "08/2025 - Heute",
+      mainInfo: {
+        de: "Franz Wurm GmbH, Metropolregion München",
+        en: "Franz Wurm GmbH, Munich Metropolitan Area",
+      },
+      details: {
+        de: "Die Franz Wurm GmbH ist ein mittelständisches Bauunternehmen im Bereich Rohrleitungs- und Tiefbau (Gas, Wasser, Fernwärme, Kabel). Als Technischer & Kaufmännischer Leiter verantworte ich: Digitalisierung und Optimierung zentraler Prozesse (BPS Bau, Kalkulation, Nachkalkulation, Aufmaß), Einsatz digitaler Tools & KI zur Prozessoptimierung (z. B. Aufmaßerfassung, Zeiterfassung, AMS/BMS), Kosten- und Prozessanalyse inkl. Controlling (Maschinen, Kolonnen, Subunternehmer, Entsorgung), Datenschutz.",
+        en: "Franz Wurm GmbH is a medium-sized construction company specializing in pipeline and civil engineering (gas, water, district heating, cables). As Technical & Commercial Manager, I am responsible for: Digitalization and optimization of core processes (BPS construction, calculation, post-calculation, measurement), implementation of digital tools & AI for process optimization (e.g., measurement recording, time tracking, AMS/BMS), cost and process analysis including controlling (machinery, crews, subcontractors, disposal), data protection.",
+      },
+    },
+  ],
+  selbstständigkeit: [
+    {
+      title: {
+        de: "Gründer & Experte | Thermischer Komfort & Thermomanagement (HVAC)",
+        en: "Founder & Expert | Thermal Comfort & Thermal Management (HVAC)",
+      },
+      year: "05/2025 - Heute",
+      mainInfo: {
+        de: "ThermalNext, München, Bayern, Deutschland (Hybrid)",
+        en: "ThermalNext, Munich, Bavaria, Germany (Hybrid)",
+      },
+      details: {
+        de: "ThermalNext bietet innovative Lösungen im Bereich thermischer Komfort. Unser Fokus liegt auf: Klimadummys & Messsysteme zur objektiven Bewertung thermischen Komforts (Fahrzeuge, eVTOLs, Gebäude), Virtuelle Simulation & KI-Regelung für HVAC- und Energiemanagementsysteme, Komfortorientierte Regelstrategien für mobile und stationäre Anwendungen, Beratung & Projektleitung bei der Integration moderner Thermomanagement-Lösungen. Mit ThermalNext unterstütze ich Unternehmen aus der Automobilbranche, Luftfahrt, Bahntechnik und dem Gebäudesektor, ihre Produkte und Systeme effizienter, komfortabler und nachhaltiger zu gestalten.",
+        en: "ThermalNext offers innovative solutions in the field of thermal comfort. Our focus is on: Climate dummies & measurement systems for objective evaluation of thermal comfort (vehicles, eVTOLs, buildings), Virtual simulation & AI control for HVAC and energy management systems, Comfort-oriented control strategies for mobile and stationary applications, Consulting & project management for the integration of modern thermal management solutions. With ThermalNext, I support companies from the automotive, aviation, rail technology, and building sectors to make their products and systems more efficient, comfortable, and sustainable.",
+      },
+      website: "www.thermalnext.de",
+      logo: "/images/thermalnext-logo.png",
+    },
+  ],
   akademisch: [
     {
       title: {
@@ -411,6 +447,31 @@ const erfahrungContent = {
 
 const veröffentlichungenContent = {
   paper: [
+    {
+      title: {
+        de: "An Objective Analysis of Using Infrared Panels for Thermal Comfort Assessments in a Vehicle Environment",
+        en: "An Objective Analysis of Using Infrared Panels for Thermal Comfort Assessments in a Vehicle Environment",
+      },
+      authors: "Kipp, M., Jacobs, J., & Bengler, K.",
+      year: "2025",
+      conference: "IEEE Access",
+      pages: "1–1",
+      doi: "10.1109/ACCESS.2025.3626693",
+    },
+    {
+      title: {
+        de: "Ergonomic Design of a Formula Student Racecar Seat",
+        en: "Ergonomic Design of a Formula Student Racecar Seat",
+      },
+      authors: "Schack, S., Kipp, M., & Bengler, K.",
+      year: "2025",
+      book: {
+        de: "Human-Computer Interaction, M. Kurosu und A. Hashizume, Hrsg., Cham: Springer Nature Switzerland",
+        en: "Human-Computer Interaction, M. Kurosu and A. Hashizume, Eds., Cham: Springer Nature Switzerland",
+      },
+      pages: "443–462",
+      doi: "10.1007/978-3-031-93965-5_31",
+    },
     {
       title: {
         de: "Thermal perception and response to overwarmed contact and surface heating on heat-sensitive-impaired individuals in a bmw vehicle environment",
@@ -928,97 +989,125 @@ const ErfahrungBlock = ({ title, content }) => {
               </div>
             </AccordionTrigger>
             <AccordionContent>
-              {item.mainInfo && (
-                <p className={`text-[#1a365d] mt-2 flex items-center text-base ${textContainerClass}`}>
-                  <FaMapMarkerAlt className="mr-2 flex-shrink-0" />
-                  <span>{typeof item.mainInfo === "string" ? item.mainInfo : item.mainInfo[language]}</span>
-                </p>
-              )}
-              {item.details && (
-                <p className={`text-[#1a365d] mt-2 flex items-start text-base ${textContainerClass}`}>
-                  <FaInfoCircle className="mr-2 mt-1 flex-shrink-0" />
-                  <span>{typeof item.details === "string" ? item.details : item.details[language]}</span>
-                </p>
-              )}
-              {item.tools && (
-                <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                  <strong>{language === "de" ? "Werkzeuge" : "Tools"}:</strong> {item.tools}
-                </p>
-              )}
-              {item.authors && (
-                <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                  <strong>{language === "de" ? "Autoren" : "Authors"}:</strong> {item.authors}
-                </p>
-              )}
-              {item.author && (
-                <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                  <strong>{language === "de" ? "Autor" : "Author"}:</strong> {item.author}
-                </p>
-              )}
-              {item.conference && (
-                <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                  <strong>{language === "de" ? "Konferenz" : "Conference"}:</strong>{" "}
-                  {typeof item.conference === "string" ? item.conference : item.conference[language]}
-                </p>
-              )}
-              {item.book && (
-                <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                  <strong>{language === "de" ? "Buch" : "Book"}:</strong>{" "}
-                  {typeof item.book === "string" ? item.book : item.book[language]}
-                </p>
-              )}
-              {item.volume && (
-                <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                  <strong>{language === "de" ? "Band" : "Volume"}:</strong> {item.volume}
-                </p>
-              )}
-              {item.pages && (
-                <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                  <strong>{language === "de" ? "Seiten" : "Pages"}:</strong> {item.pages}
-                </p>
-              )}
-              {item.publisher && (
-                <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                  <strong>{language === "de" ? "Verlag" : "Publisher"}:</strong> {item.publisher}
-                </p>
-              )}
-              {item.location && (
-                <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                  <strong>{language === "de" ? "Ort" : "Location"}:</strong>{" "}
-                  {typeof item.location === "string" ? item.location : item.location[language]}
-                </p>
-              )}
-              {item.doi && (
-                <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                  <strong>DOI:</strong>{" "}
-                  <a
-                    href={`https://doi.org/${item.doi}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`text-blue-600 hover:underline ${textContainerClass}`}
-                  >
-                    {item.doi}
-                  </a>
-                </p>
-              )}
-              {item.dissertation && (
-                <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                  <strong>{language === "de" ? "Dissertation" : "Dissertation"}:</strong>{" "}
-                  {typeof item.dissertation === "string" ? item.dissertation : item.dissertation[language]}
-                </p>
-              )}
-              {item.masterarbeit && (
-                <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                  <strong>{language === "de" ? "Masterarbeit" : "Master's Thesis"}:</strong>{" "}
-                  {typeof item.masterarbeit === "string" ? item.masterarbeit : item.masterarbeit[language]}
-                </p>
-              )}
-              {item.bachelorarbeit && (
-                <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                  <strong>{language === "de" ? "Bachelorarbeit" : "Bachelor's Thesis"}:</strong>{" "}
-                  {typeof item.bachelorarbeit === "string" ? item.bachelorarbeit : item.bachelorarbeit[language]}
-                </p>
-              )}
+              <div className={item.logo ? "flex items-start gap-4" : ""}>
+                {item.logo && (
+                  <div className="flex-shrink-0">
+                    <Image
+                      src={item.logo || "/placeholder.svg"}
+                      alt="Company Logo"
+                      width={80}
+                      height={80}
+                      className="object-contain"
+                    />
+                  </div>
+                )}
+                <div className="flex-1">
+                  {item.mainInfo && (
+                    <p className={`text-[#1a365d] mt-2 flex items-center text-base ${textContainerClass}`}>
+                      <FaMapMarkerAlt className="mr-2 flex-shrink-0" />
+                      <span>{typeof item.mainInfo === "string" ? item.mainInfo : item.mainInfo[language]}</span>
+                    </p>
+                  )}
+                  {item.details && (
+                    <p className={`text-[#1a365d] mt-2 flex items-start text-base ${textContainerClass}`}>
+                      <FaInfoCircle className="mr-2 mt-1 flex-shrink-0" />
+                      <span>{typeof item.details === "string" ? item.details : item.details[language]}</span>
+                    </p>
+                  )}
+                  {item.website && (
+                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
+                      <strong>{language === "de" ? "Website" : "Website"}:</strong>{" "}
+                      <a
+                        href={`https://${item.website}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:underline"
+                      >
+                        {item.website}
+                      </a>
+                    </p>
+                  )}
+                  {item.tools && (
+                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
+                      <strong>{language === "de" ? "Werkzeuge" : "Tools"}:</strong> {item.tools}
+                    </p>
+                  )}
+                  {item.authors && (
+                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
+                      <strong>{language === "de" ? "Autoren" : "Authors"}:</strong> {item.authors}
+                    </p>
+                  )}
+                  {item.author && (
+                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
+                      <strong>{language === "de" ? "Autor" : "Author"}:</strong> {item.author}
+                    </p>
+                  )}
+                  {item.conference && (
+                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
+                      <strong>{language === "de" ? "Konferenz" : "Conference"}:</strong>{" "}
+                      {typeof item.conference === "string" ? item.conference : item.conference[language]}
+                    </p>
+                  )}
+                  {item.book && (
+                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
+                      <strong>{language === "de" ? "Buch" : "Book"}:</strong>{" "}
+                      {typeof item.book === "string" ? item.book : item.book[language]}
+                    </p>
+                  )}
+                  {item.volume && (
+                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
+                      <strong>{language === "de" ? "Band" : "Volume"}:</strong> {item.volume}
+                    </p>
+                  )}
+                  {item.pages && (
+                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
+                      <strong>{language === "de" ? "Seiten" : "Pages"}:</strong> {item.pages}
+                    </p>
+                  )}
+                  {item.publisher && (
+                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
+                      <strong>{language === "de" ? "Verlag" : "Publisher"}:</strong> {item.publisher}
+                    </p>
+                  )}
+                  {item.location && (
+                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
+                      <strong>{language === "de" ? "Ort" : "Location"}:</strong>{" "}
+                      {typeof item.location === "string" ? item.location : item.location[language]}
+                    </p>
+                  )}
+                  {item.doi && (
+                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
+                      <strong>DOI:</strong>{" "}
+                      <a
+                        href={`https://doi.org/${item.doi}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`text-blue-600 hover:underline ${textContainerClass}`}
+                      >
+                        {item.doi}
+                      </a>
+                    </p>
+                  )}
+                  {item.dissertation && (
+                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
+                      <strong>{language === "de" ? "Dissertation" : "Dissertation"}:</strong>{" "}
+                      {typeof item.dissertation === "string" ? item.dissertation : item.dissertation[language]}
+                    </p>
+                  )}
+                  {item.masterarbeit && (
+                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
+                      <strong>{language === "de" ? "Masterarbeit" : "Master's Thesis"}:</strong>{" "}
+                      {typeof item.masterarbeit === "string" ? item.masterarbeit : item.masterarbeit[language]}
+                    </p>
+                  )}
+                  {item.bachelorarbeit && (
+                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
+                      <strong>{language === "de" ? "Bachelorarbeit" : "Bachelor's Thesis"}:</strong>{" "}
+                      {typeof item.bachelorarbeit === "string" ? item.bachelorarbeit : item.bachelorarbeit[language]}
+                    </p>
+                  )}
+                </div>
+              </div>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
@@ -1490,6 +1579,8 @@ const Home: React.FC = () => {
                   {t("career.title")}
                 </h2>
                 <div className="space-y-6">
+                  <ErfahrungBlock title={t("career.professional")} content={erfahrungContent.berufserfahrung} />
+                  <ErfahrungBlock title={t("career.selfEmployed")} content={erfahrungContent.selbstständigkeit} />
                   <ErfahrungBlock title={t("career.academic")} content={erfahrungContent.akademisch} />
                   <ErfahrungBlock title={t("career.practical")} content={erfahrungContent.praktisch} />
                 </div>
