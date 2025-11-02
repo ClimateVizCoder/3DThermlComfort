@@ -32,7 +32,6 @@ import {
   FaMicrosoft, // Added FaMicrosoft to replace SiMicrosoft
 } from "react-icons/fa"
 import { GiMountainClimbing, GiSoccerBall, GiRaceCar } from "react-icons/gi"
-import { SiAutodesk } from "react-icons/si" // Removed SiMicrosoft from imports
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/components/ui/use-toast"
@@ -1426,12 +1425,15 @@ const Home: React.FC = () => {
                 <div className="space-y-6">
                   {/* Firmenlogos */}
                   <motion.div
-                    className="bg-white rounded-lg shadow-lg p-8"
+                    className="bg-white rounded-lg shadow-lg p-8 relative"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
+                    <div className="absolute top-4 right-4 text-xs text-gray-500 italic">
+                      {language === "de" ? "Quelle: Google Bilder" : "Source: Google Images"}
+                    </div>
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center justify-items-center">
                       {[
                         "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Audi_logo-4A5eTiHxrmFhmweoRIaLFyFg5rwKSZ.svg",
@@ -1631,44 +1633,6 @@ const Home: React.FC = () => {
                       GitHub
                     </a>
                   </Button>
-                </div>
-              </div>
-            </section>
-          </div>
-
-          <div className="relative">
-            <TransparentDivider />
-            <section className="w-full py-12 flex flex-col items-center justify-center relative bg-gray-100">
-              <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8">
-                <h3 className={`text-2xl font-semibold text-[#1a365d] mb-8 text-center ${textContainerClass}`}>
-                  {language === "de" ? "Technologien & Werkzeuge" : "Technologies & Tools"}
-                </h3>
-                <div className="grid grid-cols-3 md:grid-cols-6 gap-8 items-center justify-items-center">
-                  {[
-                    { icon: <SiAutodesk className="text-6xl text-[#1a365d]" />, name: "CATIA V5" },
-                    { icon: <FaPython className="text-6xl text-[#1a365d]" />, name: "Python" },
-                    { icon: <FaCalculator className="text-6xl text-[#1a365d]" />, name: "MATLAB" },
-                    { icon: <FaWind className="text-6xl text-[#1a365d]" />, name: "CFD" },
-                    { icon: <FaCube className="text-6xl text-[#1a365d]" />, name: "3D Printing" },
-                    { icon: <FaMicrosoft className="text-6xl text-[#1a365d]" />, name: "MS Office" },
-                  ].map((tech, index) => (
-                    <motion.div
-                      key={tech.name}
-                      className="flex flex-col items-center"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                    >
-                      <div className="hover:scale-110 transition-transform duration-200">{tech.icon}</div>
-                      <p className={`text-sm text-[#1a365d] mt-2 text-center ${textContainerClass}`}>{tech.name}</p>
-                    </motion.div>
-                  ))}
-                </div>
-                <div className="mt-8 text-center">
-                  <p className="text-xs text-gray-500 italic">
-                    {language === "de" ? "Quelle: Google Bilder" : "Source: Google Images"}
-                  </p>
                 </div>
               </div>
             </section>
