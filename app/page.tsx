@@ -458,7 +458,7 @@ const veröffentlichungenContent = {
       volume: "221",
       pages: "701–709",
       publisher: "Springer International Publishing",
-      doi: "10.1007/978-3-030-74608-7-85",
+      doi: "doi.org/10.1007/978-3-030-74608-7_85",
     },
     {
       title: {
@@ -474,7 +474,7 @@ const veröffentlichungenContent = {
       volume: "1226",
       pages: "374–381",
       publisher: "Springer International Publishing",
-      doi: "10.1007/978-3-030-50732-9-50",
+      doi: "doi.org/10.1007/978-3-030-50732-9_50",
     },
   ],
   vorträge: [
@@ -1183,7 +1183,7 @@ const Home: React.FC = () => {
             >
               <div className="w-full max-w-md">
                 <Image
-                  src="https://urlyaqdfmocz1d9x.public.blob.vercel-storage.com/ManuelKipp%202-x62cKUq1sJ939s6jYn9RcH0auWTPf5.png"
+                  src="/images/design-mode/ManuelKipp%202.png"
                   alt="Manuel Kipp Portrait"
                   width={400}
                   height={533}
