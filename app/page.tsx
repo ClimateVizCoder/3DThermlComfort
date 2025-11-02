@@ -9,7 +9,6 @@ import Image from "next/image"
 import emailjs from "@emailjs/browser"
 import {
   FaTools,
-  FaCogs,
   FaCube,
   FaWind,
   FaEnvelope,
@@ -29,8 +28,11 @@ import {
   FaMobileAlt,
   FaInfoCircle,
   FaCog,
+  FaCalculator, // Added FaCalculator to replace SiMathworks
+  FaMicrosoft, // Added FaMicrosoft to replace SiMicrosoft
 } from "react-icons/fa"
 import { GiMountainClimbing, GiSoccerBall, GiRaceCar } from "react-icons/gi"
+import { SiAutodesk } from "react-icons/si" // Removed SiMicrosoft from imports
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/components/ui/use-toast"
@@ -38,6 +40,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/
 import Header from "@/components/header"
 import TransparentDivider from "@/components/TransparentDivider"
 import { useLanguage } from "@/contexts/language-context"
+import CookieBanner from "@/components/cookie-banner"
 
 // Sprachdaten
 const languages = [
@@ -559,16 +562,16 @@ const getIcon = (skillName) => {
     return <FaPython />
   }
   if (skillName.includes("MATLAB")) {
-    return <FaCogs />
+    return <FaCalculator /> // Replaced SiMathworks with FaCalculator
   }
   if (skillName.includes("CFD")) {
     return <FaWind />
   }
-  if (skillName.includes("Rapid Prototyping") || skillName.includes("Rapid Prototyping")) {
+  if (skillName.includes("Rapid Prototyping")) {
     return <FaTools />
   }
   if (skillName.includes("Microsoft Office")) {
-    return <FaFileAlt />
+    return <FaMicrosoft /> // Replaced SiMicrosoft with FaMicrosoft
   }
   return <FaTools />
 }
@@ -743,10 +746,38 @@ const HobbiesSection = () => {
 const ContactSection = () => {
   const [isMessageSent, setIsMessageSent] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [honeypot, setHoneypot] = useState("")
+  const [formLoadTime, setFormLoadTime] = useState<number>(0)
   const { t } = useLanguage()
+
+  useEffect(() => {
+    setFormLoadTime(Date.now())
+  }, [])
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+
+    if (honeypot) {
+      console.log("[v0] Spam detected: honeypot field filled")
+      toast({
+        title: t("contact.errorMessageTitle"),
+        description: t("contact.errorMessageDescription"),
+        variant: "destructive",
+      })
+      return
+    }
+
+    const timeSinceLoad = Date.now() - formLoadTime
+    if (timeSinceLoad < 3000) {
+      console.log("[v0] Spam detected: form submitted too quickly")
+      toast({
+        title: t("contact.errorMessageTitle"),
+        description: t("contact.errorMessageDescription"),
+        variant: "destructive",
+      })
+      return
+    }
+
     setIsLoading(true)
     const formData = new FormData(event.currentTarget)
     const name = formData.get("name")
@@ -773,6 +804,7 @@ const ContactSection = () => {
         description: t("contact.messageSentDescription"),
       })
       event.currentTarget.reset()
+      setFormLoadTime(Date.now())
     } catch (error) {
       console.error("Error sending email:", error)
       toast({
@@ -822,6 +854,18 @@ const ContactSection = () => {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="absolute opacity-0 pointer-events-none" aria-hidden="true">
+                <label htmlFor="website">Website</label>
+                <input
+                  type="text"
+                  id="website"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                />
+              </div>
               <div>
                 <label htmlFor="name" className={`block text-sm font-medium text-gray-700 ${textContainerClass}`}>
                   {t("contact.name")}
@@ -1398,6 +1442,7 @@ const Home: React.FC = () => {
                       ].map((src, index) => (
                         <motion.div
                           key={src}
+                          className="flex flex-col items-center"
                           initial={{ opacity: 0, x: -50 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: true }}
@@ -1590,6 +1635,44 @@ const Home: React.FC = () => {
               </div>
             </section>
           </div>
+
+          <div className="relative">
+            <TransparentDivider />
+            <section className="w-full py-12 flex flex-col items-center justify-center relative bg-gray-100">
+              <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8">
+                <h3 className={`text-2xl font-semibold text-[#1a365d] mb-8 text-center ${textContainerClass}`}>
+                  {language === "de" ? "Technologien & Werkzeuge" : "Technologies & Tools"}
+                </h3>
+                <div className="grid grid-cols-3 md:grid-cols-6 gap-8 items-center justify-items-center">
+                  {[
+                    { icon: <SiAutodesk className="text-6xl text-[#1a365d]" />, name: "CATIA V5" },
+                    { icon: <FaPython className="text-6xl text-[#1a365d]" />, name: "Python" },
+                    { icon: <FaCalculator className="text-6xl text-[#1a365d]" />, name: "MATLAB" },
+                    { icon: <FaWind className="text-6xl text-[#1a365d]" />, name: "CFD" },
+                    { icon: <FaCube className="text-6xl text-[#1a365d]" />, name: "3D Printing" },
+                    { icon: <FaMicrosoft className="text-6xl text-[#1a365d]" />, name: "MS Office" },
+                  ].map((tech, index) => (
+                    <motion.div
+                      key={tech.name}
+                      className="flex flex-col items-center"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                    >
+                      <div className="hover:scale-110 transition-transform duration-200">{tech.icon}</div>
+                      <p className={`text-sm text-[#1a365d] mt-2 text-center ${textContainerClass}`}>{tech.name}</p>
+                    </motion.div>
+                  ))}
+                </div>
+                <div className="mt-8 text-center">
+                  <p className="text-xs text-gray-500 italic">
+                    {language === "de" ? "Quelle: Google Bilder" : "Source: Google Images"}
+                  </p>
+                </div>
+              </div>
+            </section>
+          </div>
         </main>
 
         {/* Footer */}
@@ -1598,6 +1681,7 @@ const Home: React.FC = () => {
         </footer>
       </div>
       <VerticalNavigation />
+      <CookieBanner />
     </div>
   )
 }
