@@ -3,7 +3,7 @@
 import type React from "react"
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence, type PanInfo, useScroll, useTransform } from "framer-motion"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import emailjs from "@emailjs/browser"
@@ -804,76 +804,174 @@ const HobbiesSection = () => {
 }
 
 const ContactSection = () => {
-  const [isMessageSent, setIsMessageSent] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const [honeypot, setHoneypot] = useState("")
-  const [formLoadTime, setFormLoadTime] = useState<number>(0)
-  const { t } = useLanguage()
+  const formRef = useRef<HTMLFormElement>(null)
+  const [formState, setFormState] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+    website: "", // honeypot field
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [formStartTime, setFormStartTime] = useState<number>(0)
+  const [sessionToken, setSessionToken] = useState<string>("")
+  const [rateLimitInfo, setRateLimitInfo] = useState<{ remainingAttempts: number; resetTime?: number }>({
+    remainingAttempts: 3,
+  })
+  const { t, language } = useLanguage()
 
   useEffect(() => {
-    setFormLoadTime(Date.now())
+    setFormStartTime(Date.now())
+    // Generate session token dynamically
+    const generateToken = () => {
+      const array = new Uint8Array(32)
+      if (typeof window !== "undefined" && window.crypto) {
+        window.crypto.getRandomValues(array)
+      }
+      return Array.from(array, (byte) => byte.toString(16).padStart(2, "0")).join("")
+    }
+    setSessionToken(generateToken())
   }, [])
 
-  const handleSubmit = async (event) => {
-    event.preventDefault()
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormState((prev) => ({ ...prev, [name]: value }))
+  }
 
-    if (honeypot) {
-      console.log("[v0] Spam detected: honeypot field filled")
-      toast({
-        title: t("contact.errorMessageTitle"),
-        description: t("contact.errorMessageDescription"),
-        variant: "destructive",
-      })
-      return
-    }
-
-    const timeSinceLoad = Date.now() - formLoadTime
-    if (timeSinceLoad < 3000) {
-      console.log("[v0] Spam detected: form submitted too quickly")
-      toast({
-        title: t("contact.errorMessageTitle"),
-        description: t("contact.errorMessageDescription"),
-        variant: "destructive",
-      })
-      return
-    }
-
-    setIsLoading(true)
-    const formData = new FormData(event.currentTarget)
-    const name = formData.get("name")
-    const email = formData.get("email")
-    const subject = formData.get("subject")
-    const message = formData.get("message")
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setError(null)
 
     try {
-      await emailjs.send(
-        "service_qzzfofc",
-        "template_korw4qn",
-        {
-          from_name: name,
-          from_email: email,
-          subject: subject,
-          message: message,
-          to_email: "manuel-kipp95@hotmail.de",
-        },
-        "4mS8zVA3qnBnIO2ue",
-      )
-      setIsMessageSent(true)
-      toast({
-        title: t("contact.messageSentTitle"),
-        description: t("contact.messageSentDescription"),
-      })
-      event.currentTarget.reset()
-      setFormLoadTime(Date.now())
+      // 1. Rate Limiting Check
+      const checkLimit = () => {
+        if (typeof window === "undefined") {
+          return { allowed: true, remainingAttempts: 3 }
+        }
+        const stored = localStorage.getItem("form_submissions")
+        const now = Date.now()
+        if (!stored) {
+          const data = { attempts: 1, firstAttempt: now }
+          localStorage.setItem("form_submissions", JSON.stringify(data))
+          return { allowed: true, remainingAttempts: 2 }
+        }
+        const data = JSON.parse(stored)
+        if (now - data.firstAttempt > 15 * 60 * 1000) {
+          const newData = { attempts: 1, firstAttempt: now }
+          localStorage.setItem("form_submissions", JSON.stringify(newData))
+          return { allowed: true, remainingAttempts: 2 }
+        }
+        if (data.attempts >= 3) {
+          return { allowed: false, remainingAttempts: 0, resetTime: data.firstAttempt + 15 * 60 * 1000 }
+        }
+        data.attempts += 1
+        localStorage.setItem("form_submissions", JSON.stringify(data))
+        return { allowed: true, remainingAttempts: 3 - data.attempts }
+      }
+
+      const rateLimitCheck = checkLimit()
+      if (!rateLimitCheck.allowed) {
+        const resetTime = rateLimitCheck.resetTime
+        const minutesLeft = resetTime ? Math.ceil((resetTime - Date.now()) / 60000) : 15
+        throw new Error(
+          language === "de"
+            ? `Zu viele Versuche. Bitte versuchen Sie es in ${minutesLeft} Minuten erneut.`
+            : `Too many attempts. Please try again in ${minutesLeft} minutes.`,
+        )
+      }
+      setRateLimitInfo(rateLimitCheck)
+
+      // 2. Honeypot Check
+      if (formState.website !== "") {
+        console.warn("[Security] Honeypot triggered")
+        throw new Error("Invalid submission")
+      }
+
+      // 3. Timing Check
+      const timeSinceLoad = Date.now() - formStartTime
+      if (timeSinceLoad < 3000) {
+        console.warn("[Security] Submission too fast")
+        throw new Error(
+          language === "de"
+            ? "Bitte nehmen Sie sich Zeit beim Ausfüllen des Formulars"
+            : "Please take your time filling out the form",
+        )
+      }
+
+      // 4. Session Token Check
+      if (sessionToken.length !== 64 || !/^[0-9a-f]+$/i.test(sessionToken)) {
+        console.warn("[Security] Invalid session token")
+        throw new Error(
+          language === "de" ? "Sitzung abgelaufen. Bitte laden Sie die Seite neu." : "Session expired. Please refresh the page.",
+        )
+      }
+
+      // 5. Email Validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      if (!emailRegex.test(formState.email)) {
+        throw new Error(
+          language === "de" ? "Bitte geben Sie eine gültige E-Mail-Adresse ein" : "Please enter a valid email address",
+        )
+      }
+
+      // 6. Content Validation
+      const urlCount = (formState.message.match(/https?:\/\//gi) || []).length
+      if (urlCount > 3) {
+        console.warn("[Security] Too many URLs")
+        throw new Error(
+          language === "de"
+            ? "Ihre Nachricht enthält verdächtige Inhalte. Bitte überarbeiten Sie sie und versuchen Sie es erneut."
+            : "Your message contains suspicious content. Please revise and try again.",
+        )
+      }
+
+      // 7. Input Sanitization
+      const sanitize = (input: string) =>
+        input
+          .trim()
+          .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "")
+          .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, "")
+          .replace(/on\w+\s*=\s*["'][^"']*["']/gi, "")
+          .replace(/javascript:/gi, "")
+
+      const sanitizedData = {
+        name: sanitize(formState.name),
+        email: sanitize(formState.email),
+        subject: sanitize(formState.subject),
+        message: sanitize(formState.message),
+      }
+
+      // EmailJS Send
+      const templateParams = {
+        subject: sanitizedData.subject,
+        from_name: sanitizedData.name,
+        message: sanitizedData.message,
+        from_email: sanitizedData.email,
+        to_email: "manuel-kipp95@hotmail.de",
+        submission_time: new Date().toISOString(),
+        session_token: sessionToken.substring(0, 8),
+      }
+
+      await emailjs.send("service_qzzfofc", "template_korw4qn", templateParams, "4mS8zVA3qnBnIO2ue")
+
+      setIsSubmitted(true)
+      setFormState({ name: "", email: "", subject: "", message: "", website: "" })
+      setFormStartTime(Date.now())
+      
+      // Generate new session token
+      const array = new Uint8Array(32)
+      if (typeof window !== "undefined" && window.crypto) {
+        window.crypto.getRandomValues(array)
+      }
+      setSessionToken(Array.from(array, (byte) => byte.toString(16).padStart(2, "0")).join(""))
     } catch (error) {
       console.error("Error sending email:", error)
-      toast({
-        title: t("contact.errorMessageTitle"),
-        description: t("contact.errorMessageDescription"),
-        variant: "destructive",
-      })
+      setError(error instanceof Error ? error.message : language === "de" ? "Ein Fehler ist aufgetreten" : "An error occurred")
     } finally {
-      setIsLoading(false)
+      setIsSubmitting(false)
     }
   }
 
@@ -904,62 +1002,145 @@ const ContactSection = () => {
           </div>
         </div>
         <div className="w-full md:w-1/2">
-          {isMessageSent ? (
+          {isSubmitted ? (
             <div
               className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
               role="alert"
             >
               <strong className={`font-bold ${textContainerClass}`}>{t("contact.thankYou")}</strong>
               <span className={`block sm:inline ${textContainerClass}`}> {t("contact.messageSent")}</span>
+              <Button variant="outline" onClick={() => setIsSubmitted(false)} className="mt-4">
+                {language === "de" ? "Neue Nachricht senden" : "Send new message"}
+              </Button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+              <div className="flex items-center gap-2 text-xs text-gray-600 mb-4 pb-3 border-b border-gray-200">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4 text-green-600"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                  />
+                </svg>
+                <span>
+                  {language === "de" ? "Gesichertes Formular" : "Secured form"} • {rateLimitInfo.remainingAttempts}{" "}
+                  {language === "de" ? "Versuche verbleibend" : "attempts remaining"}
+                </span>
+              </div>
+
               <div className="absolute opacity-0 pointer-events-none" aria-hidden="true">
                 <label htmlFor="website">Website</label>
                 <input
                   type="text"
                   id="website"
                   name="website"
+                  value={formState.website}
+                  onChange={handleChange}
                   tabIndex={-1}
                   autoComplete="off"
-                  value={honeypot}
-                  onChange={(e) => setHoneypot(e.target.value)}
                 />
               </div>
+
               <div>
                 <label htmlFor="name" className={`block text-sm font-medium text-gray-700 ${textContainerClass}`}>
                   {t("contact.name")}
                 </label>
-                <Input type="text" id="name" name="name" required className="mt-1" />
+                <Input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formState.name}
+                  onChange={handleChange}
+                  required
+                  minLength={2}
+                  maxLength={100}
+                  className="mt-1"
+                />
               </div>
               <div>
                 <label htmlFor="email" className={`block text-sm font-medium text-gray-700 ${textContainerClass}`}>
                   {t("contact.email")}
                 </label>
-                <Input type="email" id="email" name="email" required className="mt-1" />
+                <Input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formState.email}
+                  onChange={handleChange}
+                  required
+                  maxLength={100}
+                  className="mt-1"
+                />
               </div>
               <div>
                 <label htmlFor="subject" className={`block text-sm font-medium text-gray-700 ${textContainerClass}`}>
                   {t("contact.subject")}
                 </label>
-                <Input type="text" id="subject" name="subject" required className="mt-1" />
+                <Input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  value={formState.subject}
+                  onChange={handleChange}
+                  required
+                  minLength={3}
+                  maxLength={200}
+                  className="mt-1"
+                />
               </div>
               <div>
                 <label htmlFor="message" className={`block text-sm font-medium text-gray-700 ${textContainerClass}`}>
                   {t("contact.message")}
                 </label>
-                <Textarea id="message" name="message" required className="mt-1" />
+                <Textarea
+                  id="message"
+                  name="message"
+                  rows={5}
+                  value={formState.message}
+                  onChange={handleChange}
+                  required
+                  minLength={10}
+                  maxLength={5000}
+                  className="mt-1"
+                />
               </div>
-              <Button type="submit" disabled={isLoading}>
-                {isLoading ? (
-                  <>
-                    <span className="animate-spin mr-2">⏳</span>
-                    {t("contact.sending")}
-                  </>
-                ) : (
-                  t("contact.send")
-                )}
-              </Button>
+
+              {error && (
+                <div className="text-red-600 text-sm p-3 bg-red-50 rounded-md border border-red-100">{error}</div>
+              )}
+
+              <div>
+                <Button type="submit" disabled={isSubmitting} className="w-full">
+                  {isSubmitting ? (
+                    <>
+                      <span className="animate-spin mr-2">⏳</span>
+                      {t("contact.sending")}
+                    </>
+                  ) : (
+                    t("contact.send")
+                  )}
+                </Button>
+              </div>
+
+              <div className="pt-3 text-center">
+                <a
+                  href="https://www.linkedin.com/company/107308583/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-[#1a365d] hover:text-[#2a4a7f] text-sm"
+                >
+                  <FaLinkedin className="w-5 h-5 mr-2" />
+                  <span>{t("contact.linkedin")}</span>
+                </a>
+              </div>
             </form>
           )}
         </div>
@@ -1669,8 +1850,8 @@ const Home: React.FC = () => {
                     <a
                       href={
                         language === "en"
-                          ? "https://urlyaqdfmocz1d9x.public.blob.vercel-storage.com/cv_ManuelKipp_wiss_en.pdf"
-                          : "https://urlyaqdfmocz1d9x.public.blob.vercel-storage.com/cv_ManuelKipp_wiss.pdf"
+                          ? "https://urlyaqdfmocz1d9x.public.blob.vercel-storage.com/cv_ManuelKipp_update_en_signed.pdf"
+                          : "https://urlyaqdfmocz1d9x.public.blob.vercel-storage.com/cv_ManuelKipp_update_signed.pdf"
                       }
                       target="_blank"
                       rel="noopener noreferrer"
