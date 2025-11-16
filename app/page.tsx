@@ -224,7 +224,7 @@ const erfahrungContent = {
         de: "Technischer & Kaufmännischer Leiter",
         en: "Technical & Commercial Manager",
       },
-      year: "08/2025 - Heute",
+      year: "08/2025 - 12/2025",
       mainInfo: {
         de: "Franz Wurm GmbH, Metropolregion München",
         en: "Franz Wurm GmbH, Munich Metropolitan Area",
