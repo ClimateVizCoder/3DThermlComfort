@@ -1,0 +1,13 @@
+# Requirements for TOST Equivalence Test Module
+# ============================================
+
+# Core dependencies (required)
+numpy>=1.20.0
+scipy>=1.7.0
+
+# Optional dependencies (for visualization)
+matplotlib>=3.3.0
+
+# Development dependencies (optional)
+# pytest>=7.0.0  # For unit testing
+# pandas>=1.3.0  # For data manipulation
