@@ -3,7 +3,7 @@
 import type React from "react"
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence, type PanInfo, useScroll, useTransform } from "framer-motion"
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import emailjs from "@emailjs/browser"
@@ -34,7 +34,6 @@ import {
 import { GiMountainClimbing, GiSoccerBall, GiRaceCar } from "react-icons/gi"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { toast } from "@/components/ui/toast"
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
 import Header from "@/components/header"
 import TransparentDivider from "@/components/TransparentDivider"
@@ -905,7 +904,9 @@ const ContactSection = () => {
       if (sessionToken.length !== 64 || !/^[0-9a-f]+$/i.test(sessionToken)) {
         console.warn("[Security] Invalid session token")
         throw new Error(
-          language === "de" ? "Sitzung abgelaufen. Bitte laden Sie die Seite neu." : "Session expired. Please refresh the page.",
+          language === "de"
+            ? "Sitzung abgelaufen. Bitte laden Sie die Seite neu."
+            : "Session expired. Please refresh the page.",
         )
       }
 
@@ -960,7 +961,7 @@ const ContactSection = () => {
       setIsSubmitted(true)
       setFormState({ name: "", email: "", subject: "", message: "", website: "" })
       setFormStartTime(Date.now())
-      
+
       // Generate new session token
       const array = new Uint8Array(32)
       if (typeof window !== "undefined" && window.crypto) {
@@ -969,7 +970,9 @@ const ContactSection = () => {
       setSessionToken(Array.from(array, (byte) => byte.toString(16).padStart(2, "0")).join(""))
     } catch (error) {
       console.error("Error sending email:", error)
-      setError(error instanceof Error ? error.message : language === "de" ? "Ein Fehler ist aufgetreten" : "An error occurred")
+      setError(
+        error instanceof Error ? error.message : language === "de" ? "Ein Fehler ist aufgetreten" : "An error occurred",
+      )
     } finally {
       setIsSubmitting(false)
     }
@@ -1379,8 +1382,7 @@ const Home: React.FC = () => {
         <div
           className="absolute inset-0 z-0 opacity-10"
           style={{
-            backgroundImage:
-              'url("https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pexels-photo-1166602.jpg-7zqpCiz5UoohzGC5xrSeeQbGzwRy7i.jpeg")',
+            backgroundImage: 'url("/images/pexels-photo-1166602.jpeg")',
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundAttachment: "fixed",
@@ -1453,7 +1455,7 @@ const Home: React.FC = () => {
             >
               <div className="w-full max-w-md">
                 <Image
-                  src="/images/design-mode/ManuelKipp%202.png"
+                  src="/images/manuel-kipp-profile.png"
                   alt="Manuel Kipp Portrait"
                   width={400}
                   height={533}
@@ -1706,11 +1708,11 @@ const Home: React.FC = () => {
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center justify-items-center">
                       {[
-                        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Audi_logo-4A5eTiHxrmFhmweoRIaLFyFg5rwKSZ.svg",
-                        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BMW-5p8A8AhmwjnZ7O8mCAe4DjInQkh8yl.svg",
+                        "/images/audi-logo.svg",
+                        "/images/bmw.svg",
                         "https://urlyaqdfmocz1d9x.public.blob.vercel-storage.com/logo%20fendt-0YxhORcYwjylvclVGIvu4p7OwYtmA2.svg",
-                        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/DLR_Logo-T9u28wHPz9qsEtcrjVoqe5a9YDSW2h.svg",
-                        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo%20gentherm-uqlWTPpNljtgID876PsaFerjShMQhX.png",
+                        "/images/dlr-logo.svg",
+                        "/images/logo-20gentherm.png",
                       ].map((src, index) => (
                         <motion.div
                           key={src}
