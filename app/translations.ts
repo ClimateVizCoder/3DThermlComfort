@@ -40,8 +40,9 @@ export const translations = {
       sending: "Wird gesendet...",
       success: "Nachricht erfolgreich gesendet",
       error: "Fehler beim Senden der Nachricht",
-      getInTouch: "Get in Touch!",
-      description: "Ich freue mich darauf, von Ihnen zu hören und gemeinsam innovative Ideen zu entwickeln.",
+      getInTouch: "Kontakt aufnehmen",
+      description:
+        "Für fachliche Anfragen, Industrieprojekte, Forschungskooperationen oder technische Bewertungen im Bereich thermischer Komfort, Fahrzeugklimatisierung, Ergonomie und Klimadummy-basierte Messmethoden bin ich erreichbar über:",
       thankYou: "Vielen Dank!",
       messageSent: "Ihre Nachricht wurde erfolgreich gesendet.",
     },
@@ -153,8 +154,9 @@ export const translations = {
       sending: "Sending...",
       success: "Message sent successfully",
       error: "Error sending message",
-      getInTouch: "Get in Touch!",
-      description: "I look forward to hearing from you and developing innovative ideas together.",
+      getInTouch: "Get in Touch",
+      description:
+        "For technical inquiries, industry projects, research collaborations or technical assessments in the fields of thermal comfort, vehicle climate control, ergonomics and thermal-dummy-based measurement methods, you can reach me at:",
       thankYou: "Thank you!",
       messageSent: "Your message has been successfully sent.",
     },
