@@ -448,93 +448,116 @@ const veröffentlichungenContent = {
   paper: [
     {
       title: {
+        de: "Data-Driven Climate Control in Autonomous Electric Vehicles: A Machine Learning Approach to Thermal Comfort and Energy Use",
+        en: "Data-Driven Climate Control in Autonomous Electric Vehicles: A Machine Learning Approach to Thermal Comfort and Energy Use",
+      },
+      authors: "Kipp, M., Wang, R., Schmeling, D., Sheng, Y., & Bengler, K.",
+      year: "2026",
+      conference: "Building and Environment, Article 114662",
+      doi: "10.1016/j.buildenv.2026.114662",
+    },
+    {
+      title: {
+        de: "Optimizing Thermal Comfort in Highly Automated Vehicles: An AI-Based HVAC Management Approach with Radiant Panels for Winter Conditions",
+        en: "Optimizing Thermal Comfort in Highly Automated Vehicles: An AI-Based HVAC Management Approach with Radiant Panels for Winter Conditions",
+      },
+      authors: "Kipp, M., Wang, R., & Bengler, K.",
+      year: "2026",
+      conference: "Energy and Buildings, 357, Article 117113",
+      doi: "10.1016/j.enbuild.2026.117113",
+    },
+    {
+      title: {
+        de: "Thermal Dummy for Highly Automated Vehicles: Segmentation-Focused CAD Design, Additive Manufacturing and CFD Model",
+        en: "Thermal Dummy for Highly Automated Vehicles: Segmentation-Focused CAD Design, Additive Manufacturing and CFD Model",
+      },
+      authors: "Kipp, M., Khdir, B. M., Sheng, Y., & Bengler, K.",
+      year: "2026",
+      conference: "Results in Engineering, 30, Article 110455",
+      doi: "10.1016/j.rineng.2026.110455",
+    },
+    {
+      title: {
+        de: "Adapting DIN EN ISO 14505-2 for Thermal Comfort Assessment in Highly Automated Vehicle Cabins: Effects of Occupant Posture and In-Vehicle Activity on Equivalent-Temperature Comfort Zones",
+        en: "Adapting DIN EN ISO 14505-2 for Thermal Comfort Assessment in Highly Automated Vehicle Cabins: Effects of Occupant Posture and In-Vehicle Activity on Equivalent-Temperature Comfort Zones",
+      },
+      authors: "Kipp, M., & Bengler, K.",
+      year: "2026",
+      conference: "Indoor Environments, 3(2), Article 100173",
+      doi: "10.1016/j.indenv.2026.100173",
+    },
+    {
+      title: {
+        de: "Applicability of DIN ISO 14505-2 in short-term Neutral Thermal Comfort Assessment for Highly Automated Vehicles",
+        en: "Applicability of DIN ISO 14505-2 in short-term Neutral Thermal Comfort Assessment for Highly Automated Vehicles",
+      },
+      authors: "Kipp, M., Beji, C., & Bengler, K.",
+      year: "2026",
+      conference: "IEEE Access",
+      doi: "10.1109/ACCESS.2026.3677680",
+    },
+    {
+      title: {
+        de: "Thermal Comfort in Autonomous Vehicles: A Survey Study on Activity-Based Preferences and Climate Control Strategies",
+        en: "Thermal Comfort in Autonomous Vehicles: A Survey Study on Activity-Based Preferences and Climate Control Strategies",
+      },
+      authors: "Kipp, M., Sheng, Y., Sözbir, A., & Bengler, K.",
+      year: "2026",
+      book: {
+        de: "HCI International 2025 – Late Breaking Papers (HCII 2025), CCIS 2772, Springer",
+        en: "HCI International 2025 – Late Breaking Papers (HCII 2025), CCIS 2772, Springer",
+      },
+      pages: "15–26",
+      doi: "10.1007/978-3-032-12767-9_2",
+    },
+    {
+      title: {
         de: "An Objective Analysis of Using Infrared Panels for Thermal Comfort Assessments in a Vehicle Environment",
         en: "An Objective Analysis of Using Infrared Panels for Thermal Comfort Assessments in a Vehicle Environment",
       },
       authors: "Kipp, M., Jacobs, J., & Bengler, K.",
       year: "2025",
-      conference: "IEEE Access",
-      pages: "1–1",
+      conference: "IEEE Access, 13",
+      pages: "199247–199266",
       doi: "10.1109/ACCESS.2025.3626693",
     },
     {
       title: {
-        de: "Ergonomic Design of a Formula Student Racecar Seat",
-        en: "Ergonomic Design of a Formula Student Racecar Seat",
-      },
-      authors: "Schack, S., Kipp, M., & Bengler, K.",
-      year: "2025",
-      book: {
-        de: "Human-Computer Interaction, M. Kurosu und A. Hashizume, Hrsg., Cham: Springer Nature Switzerland",
-        en: "Human-Computer Interaction, M. Kurosu and A. Hashizume, Eds., Cham: Springer Nature Switzerland",
-      },
-      pages: "443–462",
-      doi: "10.1007/978-3-031-93965-5_31",
-    },
-    {
-      title: {
-        de: "Thermal perception and response to overwarmed contact and surface heating on heat-sensitive-impaired individuals in a bmw vehicle environment",
-        en: "Thermal perception and response to overwarmed contact and surface heating on heat-sensitive-impaired individuals in a bmw vehicle environment",
+        de: "Thermal Perception and Response to Overwarmed Contact and Surface Heating on Heat-Sensitive-Impaired Individuals in a BMW Vehicle Environment",
+        en: "Thermal Perception and Response to Overwarmed Contact and Surface Heating on Heat-Sensitive-Impaired Individuals in a BMW Vehicle Environment",
       },
       authors: "Kipp, M., Hoffmann, F., Koch, P., Glockner, M., & Bengler, K.",
       year: "2023",
       conference: "2023 IEEE International Conference on Systems, Man, and Cybernetics (SMC)",
-      pages: "1396–1402",
+      pages: "4877–4884",
       doi: "10.1109/SMC53992.2023.10394003",
-    },
-    {
-      title: {
-        de: "Evaluation of the seating environment of an autonomous taxi on user needs – an online survey investigation",
-        en: "Evaluation of the seating environment of an autonomous taxi on user needs – an online survey investigation",
-      },
-      authors: "Kipp, M., Guo, C., & Bengler, K.",
-      year: "2022",
-      conference: "13th International Conference on Applied Human Factors and Ergonomics (AHFE 2022)",
-      doi: "10.54941/ahfe1002439",
     },
     {
       title: {
         de: "Evaluation of an Active Cooling Seat Concept in terms of Vehicle Energy Consumption and Passengers' Thermal Comfort",
         en: "Evaluation of an Active Cooling Seat Concept in terms of Vehicle Energy Consumption and Passengers' Thermal Comfort",
       },
-      authors: "Kipp, Manuel & Rolle, Andreas & Semmler-Sainsard, Siri & Bengler, Klaus",
+      authors: "Kipp, M., Rolle, A., Semmler-Sainsard, S. J., & Bengler, K.",
       year: "2022",
-      conference: {
-        de: "Proceedings of the Ventilation 2022: 13th International Industrial Ventilation Conference for Contaminant Control, ASHRAE",
-        en: "Proceedings of the Ventilation 2022: 13th International Industrial Ventilation Conference for Contaminant Control, ASHRAE",
+      book: {
+        de: "Ventilation 2022: 13th International Industrial Ventilation Conference for Contaminant Control, ASHRAE, Toronto (Kanada), ISBN 9781955515099",
+        en: "Ventilation 2022: 13th International Industrial Ventilation Conference for Contaminant Control, ASHRAE, Toronto (Canada), ISBN 9781955515099",
       },
+      pages: "335–344",
     },
     {
       title: {
-        de: "An innovative seat ventilation concept: Does the seat provide overall thermal comfort in autonomous vehicles?",
-        en: "An innovative seat ventilation concept: Does the seat provide overall thermal comfort in autonomous vehicles?",
+        de: "An Innovative Seat Ventilation Concept: Does the Seat Provide Overall Thermal Comfort in Autonomous Vehicles?",
+        en: "An Innovative Seat Ventilation Concept: Does the Seat Provide Overall Thermal Comfort in Autonomous Vehicles?",
       },
       authors: "Kipp, M., Rolle, A., & Bengler, K.",
       year: "2021",
       book: {
-        de: "Proceedings of the 21st Congress of the International Ergonomics Association (IEA 2021)",
-        en: "Proceedings of the 21st Congress of the International Ergonomics Association (IEA 2021)",
+        de: "Proceedings of the 21st Congress of the International Ergonomics Association (IEA 2021), LNNS 221, Springer",
+        en: "Proceedings of the 21st Congress of the International Ergonomics Association (IEA 2021), LNNS 221, Springer",
       },
-      volume: "221",
       pages: "701–709",
-      publisher: "Springer International Publishing",
-      doi: "doi.org/10.1007/978-3-030-74608-7_85",
-    },
-    {
-      title: {
-        de: "Requirements for an autonomous taxi and a resulting interior concept",
-        en: "Requirements for an autonomous taxi and a resulting interior concept",
-      },
-      authors: "Kipp, M., Bubb, I., Schwiebacher, J., Schockenhoff, F., Koenig, A., & Bengler, K.",
-      year: "2020",
-      book: {
-        de: "HCI International 2020—Posters",
-        en: "HCI International 2020—Posters",
-      },
-      volume: "1226",
-      pages: "374–381",
-      publisher: "Springer International Publishing",
-      doi: "doi.org/10.1007/978-3-030-50732-9_50",
+      doi: "10.1007/978-3-030-74608-7_85",
     },
   ],
   vorträge: [
@@ -997,7 +1020,9 @@ const ContactSection = () => {
           </div>
           <div className="flex items-center space-x-4">
             <FaMobileAlt className="text-2xl text-[#1a365d]" />
-            <span className={`text-[#1a365d] ${textContainerClass}`}>+49 015789558680</span>
+            <a href="tel:+4915789558680" className={`text-[#1a365d] hover:underline ${textContainerClass}`}>
+              +49 157 89558680
+            </a>
           </div>
           <div className="flex items-center space-x-4">
             <FaMapMarkerAlt className="text-2xl text-[#1a365d]" />
