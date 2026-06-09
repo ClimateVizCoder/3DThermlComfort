@@ -8,12 +8,12 @@ export const translations = {
     skills: {
       title: "Fähigkeiten",
       items: [
-        { name: "CAD Software (CATIA V5, RAMSIS)", years: 12, percentage: 90 },
-        { name: "Python (Datenanalyse, Machine Learning)", years: 6, percentage: 80 },
-        { name: "MATLAB/Simulink", years: 12, percentage: 50 },
+        { name: "CAD Software (CATIA V5, RAMSIS)", years: 13, percentage: 90 },
+        { name: "Python (Datenanalyse, Machine Learning)", years: 7, percentage: 80 },
+        { name: "MATLAB/Simulink", years: 13, percentage: 50 },
         { name: "CFD Software (STAR-CCM+, Ansys CFX/FLUENT)", years: 7, percentage: 60 },
-        { name: "Rapid Prototyping (3D Druck)", years: 12, percentage: 90 },
-        { name: "Microsoft Office", years: 12, percentage: 80 },
+        { name: "Rapid Prototyping (3D Druck)", years: 13, percentage: 90 },
+        { name: "Microsoft Office", years: 13, percentage: 80 },
       ],
     },
     languages: {
@@ -69,7 +69,7 @@ export const translations = {
     },
     jobTitles: {
       engineer: "Ingenieur der Fahrzeugtechnik (M.Sc.)",
-      phd: "Doktorand & Wissenschaftlicher Mitarbeiter",
+      phd: "Doktorand (TU München) · Gründer ThermalNext",
     },
     projects: {
       title: "Projektbilder",
@@ -80,13 +80,11 @@ export const translations = {
     aboutMe: {
       title: "Über mich",
       paragraph1:
-        "Mit Leidenschaft für innovative Technologien und der Überzeugung, Mobilität neu zu gestalten, bin ich ein erfahrener Ingenieur mit technischem Hintergrund in thermischem Komfort, Fahrzeugklimatisierung und Ergonomie. Von Oktober 2019 bis September 2024 war ich als wissenschaftlicher Mitarbeiter am Lehrstuhl für Ergonomie der Technischen Universität München (TUM) tätig – eine Zeit, in der ich meine akademische Laufbahn von einem Bachelor in Maschinenwesen zu einem Master in Fahrzeug- und Motorentechnik weiterentwickelte. Während meiner Promotion lag mein Fokus auf der Entwicklung energieeffizienter Klimakonzepte für hochautomatisierte Fahrzeuge, um den Energieverbrauch zu senken und den thermischen Komfort zu steigern.",
+        "Ich bin Ingenieur, Doktorand an der TU München und Gründer von ThermalNext – einem auf Thermomanagement und thermischen Komfort spezialisierten Unternehmen im B2B-Bereich. Mein Arbeitsfeld liegt an der Schnittstelle von Fahrzeugklimatisierung, Strömungssimulation und datengetriebener Modellierung, konkret dort, wo sich thermischer Komfort nicht nur subjektiv bewerten, sondern messtechnisch fassen und numerisch reproduzieren lässt.",
       paragraph2:
-        "Meine Arbeit umfasst den Einsatz moderner Methoden wie Computational Fluid Dynamics (CFD), Machine Learning und Rapid Prototyping, um innovative thermische Managementsysteme zu entwickeln und zu validieren. Ich habe erfolgreich Forschungsprojekte in Zusammenarbeit mit führenden Automobilherstellern und Zulieferern – darunter Audi, BMW, Gentherm und Fendt – geleitet, wobei ich sowohl experimentelle als auch virtuelle Ansätze zur Bewertung von thermischem Komfort und Energieeffizienz einsetzte.",
+        "Von 2019 bis 2024 war ich wissenschaftlicher Mitarbeiter am Lehrstuhl für Ergonomie der TU München. In dieser Zeit entstand meine Dissertation über energieeffiziente Klimatisierung hochautomatisierter Fahrzeuge – die zentrale Frage: Wie lassen sich thermischer Komfort und Energieverbrauch bei variablen Sitzpositionen, reduzierten Besetzungsszenarien und passiver Fahrertätigkeit gemeinsam optimieren? Methodisch arbeite ich mit CFD (STAR-CCM+, Ansys CFX/FLUENT), Machine-Learning-Verfahren und experimenteller Validierung. Ein Kernelement ist ein selbst konzipierter segmentierter Klimadummy, der additive Fertigung mit RAMSIS-basierter Körpersegmentierung verbindet und eine reproduzierbare, messkanalaufgelöste Komfortbewertung ermöglicht.",
       paragraph3:
-        "Als Projektleiter hatte ich unter anderem die spannende Möglichkeit, einen segmentierten Klimadummy zu konzipieren und umzusetzen – ein System, das additive Fertigung mit digitaler Menschmodellierung (RAMSIS) kombiniert, um den thermischen Komfort noch präziser zu bewerten. Darüber hinaus habe ich umfassende Erfahrungen im nutzerzentrierten Design von Fahrzeuginnenräumen und in der Ergonomie autonomer Mobilitätslösungen gesammelt.",
-      paragraph4:
-        "Ich bin offen für neue Herausforderungen und freue mich darauf, meine Expertise in der Fahrzeugklimatisierung in innovative Projekte einzubringen, Führungsaufgaben in der Forschung und Entwicklung zu übernehmen und so aktiv an der Gestaltung zukunftsweisender Mobilitätslösungen mitzuwirken.",
+        "Industriell habe ich Projekte mit Audi, BMW, Gentherm, AGCO Fendt und dem DLR geleitet – meist an der Schnittstelle zwischen Messdaten, Simulation und Industrieanforderungen. Mit ThermalNext überführe ich dieses Know-how in direkten industriellen Einsatz: CFD-Simulation, thermische Systemauslegung und Komfortbewertung als strukturierte Dienstleistung für OEMs und Tier-1-Zulieferer.",
     },
     career: {
       title: "Werdegang",
@@ -122,12 +120,12 @@ export const translations = {
     skills: {
       title: "Skills",
       items: [
-        { name: "CAD Software (CATIA V5, RAMSIS)", years: 12, percentage: 90 },
-        { name: "Python (Data Analysis, Machine Learning)", years: 6, percentage: 80 },
-        { name: "MATLAB/Simulink", years: 12, percentage: 50 },
+        { name: "CAD Software (CATIA V5, RAMSIS)", years: 13, percentage: 90 },
+        { name: "Python (Data Analysis, Machine Learning)", years: 7, percentage: 80 },
+        { name: "MATLAB/Simulink", years: 13, percentage: 50 },
         { name: "CFD Software (STAR-CCM+, Ansys CFX/FLUENT)", years: 7, percentage: 60 },
-        { name: "Rapid Prototyping (3D Printing)", years: 12, percentage: 90 },
-        { name: "Microsoft Office", years: 12, percentage: 80 },
+        { name: "Rapid Prototyping (3D Printing)", years: 13, percentage: 90 },
+        { name: "Microsoft Office", years: 13, percentage: 80 },
       ],
     },
     languages: {
@@ -183,7 +181,7 @@ export const translations = {
     },
     jobTitles: {
       engineer: "Automotive Engineer (M.Sc.)",
-      phd: "PhD Candidate & Research Associate",
+      phd: "PhD Candidate (TU Munich) · Founder of ThermalNext",
     },
     projects: {
       title: "Project Images",
@@ -194,13 +192,11 @@ export const translations = {
     aboutMe: {
       title: "About Me",
       paragraph1:
-        "With a passion for innovative technologies and the conviction to reshape mobility, I am an experienced engineer with a technical background in thermal comfort, vehicle air conditioning, and ergonomics. From October 2019 to September 2024, I worked as a research associate at the Chair of Ergonomics at the Technical University of Munich (TUM) - a period during which I developed my academic career from a Bachelor's degree in Mechanical Engineering to a Master's degree in Automotive and Engine Technology. During my PhD, my focus was on developing energy-efficient climate concepts for highly automated vehicles to reduce energy consumption and increase thermal comfort.",
+        "I am an engineer, a PhD candidate at the Technical University of Munich, and the founder of ThermalNext – a B2B company specializing in thermal management and thermal comfort. My work sits at the intersection of vehicle climate control, computational fluid dynamics, and data-driven modeling – specifically where thermal comfort can no longer only be assessed subjectively, but captured through measurement and reproduced numerically.",
       paragraph2:
-        "My work involves using modern methods such as Computational Fluid Dynamics (CFD), Machine Learning, and Rapid Prototyping to develop and validate innovative thermal management systems. I have successfully led research projects in collaboration with leading automobile manufacturers and suppliers - including Audi, BMW, Gentherm, and Fendt - using both experimental and virtual approaches to evaluate thermal comfort and energy efficiency.",
+        "From 2019 to 2024, I worked as a research associate at the Chair of Ergonomics at TU Munich. During this time, I completed my dissertation on energy-efficient climate control for highly automated vehicles – with the central question: how can thermal comfort and energy consumption be jointly optimized under variable seating positions, reduced occupancy scenarios, and passive driver activity? Methodologically, I work with CFD (STAR-CCM+, Ansys CFX/FLUENT), machine learning methods, and experimental validation. A core element is a self-designed segmented thermal dummy that combines additive manufacturing with RAMSIS-based body segmentation, enabling reproducible, measurement-channel-resolved comfort assessment.",
       paragraph3:
-        "As a project manager, I had the exciting opportunity to design and implement a segmented climate dummy - a system that combines additive manufacturing with digital human modeling (RAMSIS) to assess thermal comfort even more precisely. In addition, I have gained extensive experience in user-centered design of vehicle interiors and in the ergonomics of autonomous mobility solutions.",
-      paragraph4:
-        "I am open to new challenges and look forward to bringing my expertise in vehicle air conditioning to innovative projects, taking on leadership roles in research and development, and thus actively participating in shaping forward-looking mobility solutions.",
+        "On the industry side, I have led projects with Audi, BMW, Gentherm, AGCO Fendt, and DLR – mostly at the interface between measurement data, simulation, and industry requirements. With ThermalNext, I bring this expertise into direct industrial application: CFD simulation, thermal system design, and comfort assessment as a structured service for OEMs and Tier-1 suppliers.",
     },
     career: {
       title: "Career",

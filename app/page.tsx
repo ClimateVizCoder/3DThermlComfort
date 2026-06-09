@@ -66,7 +66,7 @@ const skills = [
       de: "CAD Software (CATIA V5, RAMSIS)",
       en: "CAD Software (CATIA V5, RAMSIS)",
     },
-    years: 12,
+    years: 13,
     percentage: 90,
   },
   {
@@ -74,7 +74,7 @@ const skills = [
       de: "Python (Datenanalyse, Machine Learning)",
       en: "Python (Data Analysis, Machine Learning)",
     },
-    years: 6,
+    years: 7,
     percentage: 80,
   },
   {
@@ -82,7 +82,7 @@ const skills = [
       de: "MATLAB/Simulink",
       en: "MATLAB/Simulink",
     },
-    years: 12,
+    years: 13,
     percentage: 50,
   },
   {
@@ -98,7 +98,7 @@ const skills = [
       de: "Rapid Prototyping (3D Druck)",
       en: "Rapid Prototyping (3D Printing)",
     },
-    years: 12,
+    years: 13,
     percentage: 90,
   },
   {
@@ -106,7 +106,7 @@ const skills = [
       de: "Microsoft Office",
       en: "Microsoft Office",
     },
-    years: 12,
+    years: 13,
     percentage: 80,
   },
 ]
@@ -1516,77 +1516,60 @@ const Home: React.FC = () => {
                     <GiRaceCar className="text-4xl text-[#1a365d] ml-4" />
                   </div>
                 </div>
-                <div className="text-lg">
-                  <div className="hidden md:flex items-start space-x-8">
-                    <div className="w-1/4 flex-shrink-0 relative group">
-                      <div className="w-32 h-32 relative">
-                        <motion.div
-                          className="absolute inset-0"
-                          initial={{ rotate: 0 }}
-                          whileInView={{ rotate: 360 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 2, ease: "linear" }}
-                        >
-                          <FaCog className="text-9xl text-[#1a365d]" />
-                        </motion.div>
-                        <motion.div
-                          className="absolute top-2 left-10"
-                          initial={{ rotate: 0 }}
-                          whileInView={{ rotate: -360 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 2, ease: "linear" }}
-                        >
-                          <FaCog className="text-8xl text-[#2a4a7f]" />
-                        </motion.div>
-                        <motion.div
-                          className="absolute -bottom-64 -left-4"
-                          initial={{ x: -100, opacity: 0 }}
-                          whileInView={{ x: 0, opacity: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1, ease: "easeOut", delay: 1.0 }}
-                        >
-                          <GiRaceCar className="text-9xl text-[#1a365d]" />
-                        </motion.div>
-                        <motion.div
-                          className="absolute -bottom-[500px] left-4"
-                          initial={{ scale: 0.8, opacity: 0 }}
-                          whileInView={{ scale: [1, 1.2, 1], opacity: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1, ease: "easeInOut", delay: 1.5, times: [0, 0.5, 1] }}
-                        >
-                          <FaCube className="text-8xl text-[#2a4a7f]" />
-                        </motion.div>
-                      </div>
-                    </div>
-                    <div className="w-3/4">
-                      <h2
-                        className={`text-3xl md:text-4xl font-semibold text-[#1a365d] mb-6 leading-relaxed ${textContainerClass}`}
+                <div className="text-lg flex flex-col md:flex-row items-start md:space-x-8">
+                  <div className="hidden md:block w-1/4 flex-shrink-0 relative group">
+                    <div className="w-32 h-32 relative">
+                      <motion.div
+                        className="absolute inset-0"
+                        initial={{ rotate: 0 }}
+                        whileInView={{ rotate: 360 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 2, ease: "linear" }}
                       >
-                        {t("aboutMe.title")}
-                      </h2>
-                      <p className={`text-foreground text-justify mb-4 ${textContainerClass}`}>
-                        {t("aboutMe.paragraph1")}
-                      </p>
-                      <p className={`text-foreground text-justify mb-4 ${textContainerClass}`}>
-                        {t("aboutMe.paragraph2")}
-                      </p>
-                      <p className={`text-foreground text-justify mb-4 ${textContainerClass}`}>
-                        {t("aboutMe.paragraph3")}
-                      </p>
-                      <p className={`text-foreground text-justify ${textContainerClass}`}>{t("aboutMe.paragraph4")}</p>
+                        <FaCog className="text-9xl text-[#1a365d]" />
+                      </motion.div>
+                      <motion.div
+                        className="absolute top-2 left-10"
+                        initial={{ rotate: 0 }}
+                        whileInView={{ rotate: -360 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 2, ease: "linear" }}
+                      >
+                        <FaCog className="text-8xl text-[#2a4a7f]" />
+                      </motion.div>
+                      <motion.div
+                        className="absolute -bottom-64 -left-4"
+                        initial={{ x: -100, opacity: 0 }}
+                        whileInView={{ x: 0, opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, ease: "easeOut", delay: 1.0 }}
+                      >
+                        <GiRaceCar className="text-9xl text-[#1a365d]" />
+                      </motion.div>
+                      <motion.div
+                        className="absolute -bottom-[500px] left-4"
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        whileInView={{ scale: [1, 1.2, 1], opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, ease: "easeInOut", delay: 1.5, times: [0, 0.5, 1] }}
+                      >
+                        <FaCube className="text-8xl text-[#2a4a7f]" />
+                      </motion.div>
                     </div>
                   </div>
-                  <div className="md:hidden">
+                  <div className="w-full md:w-3/4">
+                    <h2
+                      className={`hidden md:block text-3xl md:text-4xl font-semibold text-[#1a365d] mb-6 leading-relaxed ${textContainerClass}`}
+                    >
+                      {t("aboutMe.title")}
+                    </h2>
                     <p className={`text-foreground text-justify mb-4 ${textContainerClass}`}>
                       {t("aboutMe.paragraph1")}
                     </p>
                     <p className={`text-foreground text-justify mb-4 ${textContainerClass}`}>
                       {t("aboutMe.paragraph2")}
                     </p>
-                    <p className={`text-foreground text-justify mb-4 ${textContainerClass}`}>
-                      {t("aboutMe.paragraph3")}
-                    </p>
-                    <p className={`text-foreground text-justify ${textContainerClass}`}>{t("aboutMe.paragraph4")}</p>
+                    <p className={`text-foreground text-justify ${textContainerClass}`}>{t("aboutMe.paragraph3")}</p>
                   </div>
                 </div>
               </div>
@@ -1728,9 +1711,6 @@ const Home: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <div className="absolute top-4 right-4 text-xs text-gray-500 italic">
-                      {language === "de" ? "Quelle: Google Bilder" : "Source: Google Images"}
-                    </div>
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center justify-items-center">
                       {[
                         "/images/audi-logo.svg",
