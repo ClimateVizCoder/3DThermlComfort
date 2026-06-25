@@ -178,7 +178,7 @@ const erfahrungContent = {
         de: "ILS Manager (Integrated Logistic Support)",
         en: "ILS Manager (Integrated Logistic Support)",
       },
-      year: "01/2026 - Heute",
+      year: "08/2026 - Heute",
       active: true,
       parallel: true,
       mainInfo: {
@@ -1113,10 +1113,10 @@ const ContactSection = () => {
                   href="https://www.linkedin.com/company/107308583/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center text-[#1a365d] hover:text-[#2a4a7f] text-sm"
+                  className="inline-flex items-center justify-center text-[#1a365d] hover:text-[#2a4a7f]"
+                  aria-label="LinkedIn"
                 >
-                  <FaLinkedin className="w-5 h-5 mr-2" />
-                  <span>{t("contact.linkedin")}</span>
+                  <FaLinkedin className="w-6 h-6" />
                 </a>
               </div>
             </form>
@@ -1504,17 +1504,15 @@ const Home: React.FC = () => {
               transition={{ duration: 0.5 }}
             >
               <div className="w-full max-w-md">
-                <div className="gold-ring-pulse rounded-lg" style={{ border: `2px solid ${ACCENT}` }}>
-                  <Image
-                    src="/images/manuel-kipp-profile.png"
-                    alt="Manuel Kipp Portrait"
-                    width={400}
-                    height={533}
-                    className="rounded-lg shadow-lg"
-                    priority
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
+                <Image
+                  src="/images/manuel-kipp-profile.png"
+                  alt="Manuel Kipp Portrait"
+                  width={400}
+                  height={533}
+                  className="rounded-lg shadow-lg"
+                  priority
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
               </div>
             </motion.div>
           </div>
@@ -1617,98 +1615,50 @@ const Home: React.FC = () => {
                 >
                   {t("skills.title")}
                 </h2>
-                <div className="space-y-10">
-                  {/* Hervorgehobene Kernkompetenz */}
-                  <motion.div
-                    className="accent-shine relative overflow-hidden rounded-2xl p-8 md:p-10 text-white shadow-xl"
-                    style={{ background: `linear-gradient(135deg, ${ACCENT} 0%, ${ACCENT_DARK} 100%)` }}
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    {/* Driftendes konisches Glühen */}
-                    <div
-                      aria-hidden="true"
-                      className="accent-glow-spin pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full opacity-30 blur-2xl"
-                      style={{ background: "conic-gradient(from 0deg, rgba(255,255,255,0.6), transparent 60%)" }}
-                    />
-                    <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-                      <div className="flex items-start gap-5">
-                        <motion.span
-                          className="flex-shrink-0 grid place-items-center rounded-2xl bg-white/15 backdrop-blur-sm"
-                          style={{ width: 72, height: 72 }}
-                          animate={{ y: [0, -6, 0] }}
-                          transition={{ duration: 3, ease: "easeInOut", repeat: Number.POSITIVE_INFINITY }}
-                        >
-                          <FaCube className="text-4xl text-white" />
-                        </motion.span>
-                        <div>
-                          <span className="inline-flex items-center rounded-full bg-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider">
-                            {language === "de" ? "Spitzenkompetenz" : "Top Expertise"}
-                          </span>
-                          <h3 className={`font-display text-2xl md:text-3xl font-bold mt-2 ${textContainerClass}`}>
-                            {featuredSkill.name[language]}
-                          </h3>
-                          <p className={`mt-2 max-w-xl text-white/85 leading-relaxed ${textContainerClass}`}>
-                            {featuredSkill.tagline[language]}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="flex flex-col items-start md:items-end">
-                        <div className="flex items-baseline gap-1">
-                          <span className="font-display text-5xl md:text-6xl font-bold leading-none">13</span>
-                          <span className="text-lg font-medium text-white/85">
-                            {language === "de" ? "Jahre" : "yrs"}
-                          </span>
-                        </div>
-                        <div className="mt-3 h-2 w-40 overflow-hidden rounded-full bg-white/25">
-                          <motion.div
-                            className="h-full rounded-full bg-white"
-                            initial={{ width: 0 }}
-                            whileInView={{ width: "96%" }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1.4, ease: "easeOut", delay: 0.3 }}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  {/* Weitere Kernkompetenzen */}
-                  <div>
-                    <p className="text-center text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">
-                      {language === "de" ? "Werkzeuge & Methoden" : "Tools & Methods"}
-                    </p>
-                    <div className="flex flex-wrap justify-center gap-3">
-                      {primarySkills.map((skill, index) => (
-                        <motion.span
-                          key={skill}
-                          className="inline-flex items-center rounded-full bg-white px-5 py-2.5 text-base font-semibold text-[#1a365d] shadow-sm transition-colors hover:text-white"
-                          style={{ border: `2px solid ${ACCENT}` }}
-                          whileHover={{ scale: 1.06, backgroundColor: ACCENT }}
-                          initial={{ opacity: 0, y: 12 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.4, delay: index * 0.05 }}
-                        >
-                          {skill}
-                        </motion.span>
-                      ))}
-                      {secondarySkills.map((skill, index) => (
-                        <motion.span
-                          key={typeof skill === "string" ? skill : skill.de}
-                          className="inline-flex items-center rounded-full border border-gray-300 bg-gray-50 px-4 py-1.5 text-sm font-medium text-gray-500"
-                          initial={{ opacity: 0, y: 12 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.4, delay: (primarySkills.length + index) * 0.05 }}
-                        >
-                          {typeof skill === "string" ? skill : skill[language]}
-                        </motion.span>
-                      ))}
-                    </div>
+                <div className="space-y-5">
+                  {/* Schwerpunkt – dezent hervorgehoben (gefüllte Pill) */}
+                  <div className="flex flex-wrap justify-center gap-3">
+                    <motion.span
+                      className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-base font-semibold text-white shadow-sm"
+                      style={{ backgroundColor: ACCENT }}
+                      initial={{ opacity: 0, y: 12 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4 }}
+                    >
+                      <FaCube className="text-sm" />
+                      {featuredSkill.name[language]}
+                    </motion.span>
+                    {primarySkills.map((skill, index) => (
+                      <motion.span
+                        key={skill}
+                        className="inline-flex items-center rounded-full border border-gray-300 bg-white px-5 py-2.5 text-base font-medium text-[#1a365d] transition-colors"
+                        whileHover={{ borderColor: ACCENT, color: ACCENT }}
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: (index + 1) * 0.05 }}
+                      >
+                        {skill}
+                      </motion.span>
+                    ))}
+                    {secondarySkills.map((skill, index) => (
+                      <motion.span
+                        key={typeof skill === "string" ? skill : skill.de}
+                        className="inline-flex items-center rounded-full border border-gray-200 bg-gray-50 px-4 py-1.5 text-sm font-medium text-gray-500"
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: (primarySkills.length + 1 + index) * 0.05 }}
+                      >
+                        {typeof skill === "string" ? skill : skill[language]}
+                      </motion.span>
+                    ))}
                   </div>
+                  {/* Ehrliche, zurückhaltende Einordnung */}
+                  <p className={`text-center text-sm text-gray-500 max-w-2xl mx-auto leading-relaxed ${textContainerClass}`}>
+                    {featuredSkill.tagline[language]}
+                  </p>
                 </div>
               </div>
             </section>
