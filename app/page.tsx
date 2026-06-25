@@ -8,9 +8,7 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import emailjs from "@emailjs/browser"
 import {
-  FaTools,
   FaCube,
-  FaWind,
   FaEnvelope,
   FaLinkedin,
   FaDumbbell,
@@ -21,20 +19,15 @@ import {
   FaGithub,
   FaChevronDown,
   FaUniversity,
-  FaPython,
   FaFileAlt,
   FaResearchgate,
   FaMapMarkerAlt,
   FaMobileAlt,
-  FaInfoCircle,
   FaCog,
-  FaCalculator, // Added FaCalculator to replace SiMathworks
-  FaMicrosoft, // Added FaMicrosoft to replace SiMicrosoft
 } from "react-icons/fa"
 import { GiMountainClimbing, GiSoccerBall, GiRaceCar } from "react-icons/gi"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
 import Header from "@/components/header"
 import TransparentDivider from "@/components/TransparentDivider"
 import { useLanguage } from "@/contexts/language-context"
@@ -59,57 +52,19 @@ const languages = [
   },
 ]
 
-// Skills-Daten mit Übersetzungen
-const skills = [
-  {
-    name: {
-      de: "CAD Software (CATIA V5, RAMSIS)",
-      en: "CAD Software (CATIA V5, RAMSIS)",
-    },
-    years: 13,
-    percentage: 90,
+// Hervorgehobene Kernkompetenz (Spitzen-Skill)
+const featuredSkill = {
+  name: { de: "Rapid Prototyping & 3D-Druck", en: "Rapid Prototyping & 3D Printing" },
+  tagline: {
+    de: "Vom CAD-Konzept zum funktionsfähigen Klimadummy – additive Fertigung als Kernhandwerk.",
+    en: "From CAD concept to a functional thermal dummy — additive manufacturing as a core craft.",
   },
-  {
-    name: {
-      de: "Python (Datenanalyse, Machine Learning)",
-      en: "Python (Data Analysis, Machine Learning)",
-    },
-    years: 7,
-    percentage: 80,
-  },
-  {
-    name: {
-      de: "MATLAB/Simulink",
-      en: "MATLAB/Simulink",
-    },
-    years: 13,
-    percentage: 50,
-  },
-  {
-    name: {
-      de: "CFD Software (STAR-CCM+, Ansys CFX/FLUENT)",
-      en: "CFD Software (STAR-CCM+, Ansys CFX/FLUENT)",
-    },
-    years: 7,
-    percentage: 60,
-  },
-  {
-    name: {
-      de: "Rapid Prototyping (3D Druck)",
-      en: "Rapid Prototyping (3D Printing)",
-    },
-    years: 13,
-    percentage: 90,
-  },
-  {
-    name: {
-      de: "Microsoft Office",
-      en: "Microsoft Office",
-    },
-    years: 13,
-    percentage: 80,
-  },
-]
+}
+
+// Skills als Tag-Grid: Primär (Kernkompetenzen) und Sekundär (ergänzend)
+const primarySkills = ["STAR-CCM+", "Ansys CFX/FLUENT", "Python (ML/Data)", "MATLAB/Simulink", "CATIA V5", "RAMSIS"]
+
+const secondarySkills = [{ de: "Microsoft Office", en: "Microsoft Office" }]
 
 // Hobbies-Daten mit Übersetzungen
 const hobbies = [
@@ -220,6 +175,42 @@ const erfahrungContent = {
   berufserfahrung: [
     {
       title: {
+        de: "ILS Manager (Integrated Logistic Support)",
+        en: "ILS Manager (Integrated Logistic Support)",
+      },
+      year: "08/2026 - Heute",
+      active: true,
+      parallel: true,
+      mainInfo: {
+        de: "KNDS Deutschland, München, Bayern, Deutschland",
+        en: "KNDS Deutschland, Munich, Bavaria, Germany",
+      },
+      details: {
+        de: "Verantwortung für den Integrated Logistic Support (ILS) komplexer Verteidigungs- und Großsysteme: Planung, Steuerung und Koordination logistischer Unterstützungskonzepte über den gesamten Produktlebenszyklus. Schnittstelle zwischen Engineering, Instandhaltung, Ersatzteilmanagement und Kunde.",
+        en: "Responsible for the Integrated Logistic Support (ILS) of complex defense and large-scale systems: planning, steering, and coordination of logistic support concepts across the entire product life cycle. Interface between engineering, maintenance, spare parts management, and the customer.",
+      },
+    },
+    {
+      title: {
+        de: "Gründer & Experte | Thermischer Komfort & Thermomanagement (HVAC)",
+        en: "Founder & Expert | Thermal Comfort & Thermal Management (HVAC)",
+      },
+      year: "05/2025 - Heute",
+      active: true,
+      parallel: true,
+      mainInfo: {
+        de: "ThermalNext, München, Bayern, Deutschland (Hybrid)",
+        en: "ThermalNext, Munich, Bavaria, Germany (Hybrid)",
+      },
+      details: {
+        de: "ThermalNext bietet innovative Lösungen im Bereich thermischer Komfort. Unser Fokus liegt auf: Klimadummys & Messsysteme zur objektiven Bewertung thermischen Komforts (Fahrzeuge, eVTOLs, Gebäude), Virtuelle Simulation & KI-Regelung für HVAC- und Energiemanagementsysteme, Komfortorientierte Regelstrategien für mobile und stationäre Anwendungen, Beratung & Projektleitung bei der Integration moderner Thermomanagement-Lösungen. Mit ThermalNext unterstütze ich Unternehmen aus der Automobilbranche, Luftfahrt, Bahntechnik und dem Gebäudesektor, ihre Produkte und Systeme effizienter, komfortabler und nachhaltiger zu gestalten.",
+        en: "ThermalNext offers innovative solutions in the field of thermal comfort. Our focus is on: Climate dummies & measurement systems for objective evaluation of thermal comfort (vehicles, eVTOLs, buildings), Virtual simulation & AI control for HVAC and energy management systems, Comfort-oriented control strategies for mobile and stationary applications, Consulting & project management for the integration of modern thermal management solutions. With ThermalNext, I support companies from the automotive, aviation, rail technology, and building sectors to make their products and systems more efficient, comfortable, and sustainable.",
+      },
+      website: "www.thermalnext.de",
+      logo: "/images/thermalnext-logo.png",
+    },
+    {
+      title: {
         de: "Technischer & Kaufmännischer Leiter",
         en: "Technical & Commercial Manager",
       },
@@ -232,25 +223,6 @@ const erfahrungContent = {
         de: "Die Franz Wurm GmbH ist ein mittelständisches Bauunternehmen im Bereich Rohrleitungs- und Tiefbau (Gas, Wasser, Fernwärme, Kabel). Als Technischer & Kaufmännischer Leiter verantworte ich: Digitalisierung und Optimierung zentraler Prozesse (BPS Bau, Kalkulation, Nachkalkulation, Aufmaß), Einsatz digitaler Tools & KI zur Prozessoptimierung (z. B. Aufmaßerfassung, Zeiterfassung, AMS/BMS), Kosten- und Prozessanalyse inkl. Controlling (Maschinen, Kolonnen, Subunternehmer, Entsorgung), Datenschutz.",
         en: "Franz Wurm GmbH is a medium-sized construction company specializing in pipeline and civil engineering (gas, water, district heating, cables). As Technical & Commercial Manager, I am responsible for: Digitalization and optimization of core processes (BPS construction, calculation, post-calculation, measurement), implementation of digital tools & AI for process optimization (e.g., measurement recording, time tracking, AMS/BMS), cost and process analysis including controlling (machinery, crews, subcontractors, disposal), data protection.",
       },
-    },
-  ],
-  selbstständigkeit: [
-    {
-      title: {
-        de: "Gründer & Experte | Thermischer Komfort & Thermomanagement (HVAC)",
-        en: "Founder & Expert | Thermal Comfort & Thermal Management (HVAC)",
-      },
-      year: "05/2025 - Heute",
-      mainInfo: {
-        de: "ThermalNext, München, Bayern, Deutschland (Hybrid)",
-        en: "ThermalNext, Munich, Bavaria, Germany (Hybrid)",
-      },
-      details: {
-        de: "ThermalNext bietet innovative Lösungen im Bereich thermischer Komfort. Unser Fokus liegt auf: Klimadummys & Messsysteme zur objektiven Bewertung thermischen Komforts (Fahrzeuge, eVTOLs, Gebäude), Virtuelle Simulation & KI-Regelung für HVAC- und Energiemanagementsysteme, Komfortorientierte Regelstrategien für mobile und stationäre Anwendungen, Beratung & Projektleitung bei der Integration moderner Thermomanagement-Lösungen. Mit ThermalNext unterstütze ich Unternehmen aus der Automobilbranche, Luftfahrt, Bahntechnik und dem Gebäudesektor, ihre Produkte und Systeme effizienter, komfortabler und nachhaltiger zu gestalten.",
-        en: "ThermalNext offers innovative solutions in the field of thermal comfort. Our focus is on: Climate dummies & measurement systems for objective evaluation of thermal comfort (vehicles, eVTOLs, buildings), Virtual simulation & AI control for HVAC and energy management systems, Comfort-oriented control strategies for mobile and stationary applications, Consulting & project management for the integration of modern thermal management solutions. With ThermalNext, I support companies from the automotive, aviation, rail technology, and building sectors to make their products and systems more efficient, comfortable, and sustainable.",
-      },
-      website: "www.thermalnext.de",
-      logo: "/images/thermalnext-logo.png",
     },
   ],
   akademisch: [
@@ -635,29 +607,6 @@ const sections = [
   { id: "dokumente", title: "Dokumente und Links" },
 ]
 
-// Aktualisierte Funktion zur Auswahl der Icons anhand des Skill-Namens
-const getIcon = (skillName) => {
-  if (skillName.includes("CATIA")) {
-    return <FaCube />
-  }
-  if (skillName.includes("Python")) {
-    return <FaPython />
-  }
-  if (skillName.includes("MATLAB")) {
-    return <FaCalculator /> // Replaced SiMathworks with FaCalculator
-  }
-  if (skillName.includes("CFD")) {
-    return <FaWind />
-  }
-  if (skillName.includes("Rapid Prototyping")) {
-    return <FaTools />
-  }
-  if (skillName.includes("Microsoft Office")) {
-    return <FaMicrosoft /> // Replaced SiMicrosoft with FaMicrosoft
-  }
-  return <FaTools />
-}
-
 /**
  * ----------------------------
  *     NEUER: DRAG-SLIDER (ProjectImageSlider)
@@ -769,7 +718,8 @@ function ProjectImageSlider() {
         {images.map((_, index) => (
           <button
             key={index}
-            className={`w-2 h-2 rounded-full transition-colors ${index === imageIndex ? "bg-blue-600" : "bg-gray-300"}`}
+            className={`w-2 h-2 rounded-full transition-colors ${index === imageIndex ? "" : "bg-gray-300"}`}
+            style={index === imageIndex ? { backgroundColor: ACCENT } : undefined}
             onClick={() => setPage([index, index > imageIndex ? 1 : -1])}
             aria-label={`Gehe zu Bild ${index + 1}`}
           />
@@ -1163,10 +1113,10 @@ const ContactSection = () => {
                   href="https://www.linkedin.com/company/107308583/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center text-[#1a365d] hover:text-[#2a4a7f] text-sm"
+                  className="inline-flex items-center justify-center text-[#1a365d] hover:text-[#2a4a7f]"
+                  aria-label="LinkedIn"
                 >
-                  <FaLinkedin className="w-5 h-5 mr-2" />
-                  <span>{t("contact.linkedin")}</span>
+                  <FaLinkedin className="w-6 h-6" />
                 </a>
               </div>
             </form>
@@ -1177,149 +1127,207 @@ const ContactSection = () => {
   )
 }
 
-const ErfahrungBlock = ({ title, content }) => {
-  const { t, language } = useLanguage()
+const ACCENT = "#E63C2D"
+const ACCENT_DARK = "#C32A1C"
+
+const isActiveEntry = (item) => Boolean(item.active) || /Heute|Present|Today/i.test(item.year || "")
+
+// Permanent, open vertical timeline (replaces the old accordion pattern)
+const TimelineBlock = ({ title, content }) => {
+  const { language } = useLanguage()
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-      <h3 className={`text-2xl font-semibold text-[#1a365d] mb-4 leading-relaxed py-1 ${textContainerClass}`}>
+    <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 mb-6">
+      <h3 className={`font-display text-2xl font-semibold text-[#1a365d] mb-6 leading-relaxed ${textContainerClass}`}>
         {title}
       </h3>
-      {content.map((item, index) => (
-        <Accordion type="single" collapsible className="w-full mb-4" key={index}>
-          <AccordionItem value={`item-${index}`}>
-            <AccordionTrigger
-              className={`text-lg font-medium text-[#1a365d] flex justify-between items-center ${textContainerClass}`}
-            >
-              <div className="flex items-center w-full">
-                <span className="text-base text-gray-500 mr-4 whitespace-nowrap">{item.year}</span>
-                <span className={`text-left ${textContainerClass}`}>
-                  {typeof item.title === "string" ? item.title : item.title[language]}
+      <ol className="relative ml-2 border-l-2 space-y-8" style={{ borderColor: "rgba(230,60,45,0.3)" }}>
+        {content.map((item, index) => {
+          const active = isActiveEntry(item)
+          const role = typeof item.title === "string" ? item.title : item.title[language]
+          const employer = item.mainInfo
+            ? typeof item.mainInfo === "string"
+              ? item.mainInfo
+              : item.mainInfo[language]
+            : null
+          return (
+            <li key={index} className="relative pl-6 md:pl-8">
+              <span
+                aria-hidden="true"
+                className={`absolute -left-[9px] top-1 w-4 h-4 rounded-full border-2 border-white ${
+                  active ? "gold-dot-pulse" : ""
+                }`}
+                style={{ backgroundColor: active ? ACCENT : "rgba(26,54,93,0.3)" }}
+              />
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <span className="text-sm font-semibold whitespace-nowrap" style={{ color: ACCENT }}>
+                  {item.year}
                 </span>
-              </div>
-            </AccordionTrigger>
-            <AccordionContent>
-              <div className={item.logo ? "flex items-start gap-4" : ""}>
-                {item.logo && (
-                  <div className="flex-shrink-0">
-                    <Image
-                      src={item.logo || "/placeholder.svg"}
-                      alt="Company Logo"
-                      width={80}
-                      height={80}
-                      className="object-contain"
-                    />
-                  </div>
+                {item.parallel && (
+                  <span
+                    className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium"
+                    style={{ color: ACCENT, backgroundColor: "rgba(184,146,74,0.12)", border: `1px solid ${ACCENT}80` }}
+                  >
+                    {language === "de" ? "Parallel" : "Concurrent"}
+                  </span>
                 )}
-                <div className="flex-1">
-                  {item.mainInfo && (
-                    <p className={`text-[#1a365d] mt-2 flex items-center text-base ${textContainerClass}`}>
-                      <FaMapMarkerAlt className="mr-2 flex-shrink-0" />
-                      <span>{typeof item.mainInfo === "string" ? item.mainInfo : item.mainInfo[language]}</span>
-                    </p>
-                  )}
-                  {item.details && (
-                    <p className={`text-[#1a365d] mt-2 flex items-start text-base ${textContainerClass}`}>
-                      <FaInfoCircle className="mr-2 mt-1 flex-shrink-0" />
-                      <span>{typeof item.details === "string" ? item.details : item.details[language]}</span>
-                    </p>
-                  )}
-                  {item.website && (
-                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                      <strong>{language === "de" ? "Website" : "Website"}:</strong>{" "}
-                      <a
-                        href={`https://${item.website}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-600 hover:underline"
-                      >
-                        {item.website}
-                      </a>
-                    </p>
-                  )}
-                  {item.tools && (
-                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                      <strong>{language === "de" ? "Werkzeuge" : "Tools"}:</strong> {item.tools}
-                    </p>
-                  )}
-                  {item.authors && (
-                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                      <strong>{language === "de" ? "Autoren" : "Authors"}:</strong> {item.authors}
-                    </p>
-                  )}
-                  {item.author && (
-                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                      <strong>{language === "de" ? "Autor" : "Author"}:</strong> {item.author}
-                    </p>
-                  )}
-                  {item.conference && (
-                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                      <strong>{language === "de" ? "Konferenz" : "Conference"}:</strong>{" "}
-                      {typeof item.conference === "string" ? item.conference : item.conference[language]}
-                    </p>
-                  )}
-                  {item.book && (
-                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                      <strong>{language === "de" ? "Buch" : "Book"}:</strong>{" "}
-                      {typeof item.book === "string" ? item.book : item.book[language]}
-                    </p>
-                  )}
-                  {item.volume && (
-                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                      <strong>{language === "de" ? "Band" : "Volume"}:</strong> {item.volume}
-                    </p>
-                  )}
-                  {item.pages && (
-                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                      <strong>{language === "de" ? "Seiten" : "Pages"}:</strong> {item.pages}
-                    </p>
-                  )}
-                  {item.publisher && (
-                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                      <strong>{language === "de" ? "Verlag" : "Publisher"}:</strong> {item.publisher}
-                    </p>
-                  )}
-                  {item.location && (
-                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                      <strong>{language === "de" ? "Ort" : "Location"}:</strong>{" "}
-                      {typeof item.location === "string" ? item.location : item.location[language]}
-                    </p>
-                  )}
-                  {item.doi && (
-                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                      <strong>DOI:</strong>{" "}
-                      <a
-                        href={`https://doi.org/${item.doi}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`text-blue-600 hover:underline ${textContainerClass}`}
-                      >
-                        {item.doi}
-                      </a>
-                    </p>
-                  )}
-                  {item.dissertation && (
-                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                      <strong>{language === "de" ? "Dissertation" : "Dissertation"}:</strong>{" "}
-                      {typeof item.dissertation === "string" ? item.dissertation : item.dissertation[language]}
-                    </p>
-                  )}
-                  {item.masterarbeit && (
-                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                      <strong>{language === "de" ? "Masterarbeit" : "Master's Thesis"}:</strong>{" "}
-                      {typeof item.masterarbeit === "string" ? item.masterarbeit : item.masterarbeit[language]}
-                    </p>
-                  )}
-                  {item.bachelorarbeit && (
-                    <p className={`text-[#1a365d] mt-2 text-base ${textContainerClass}`}>
-                      <strong>{language === "de" ? "Bachelorarbeit" : "Bachelor's Thesis"}:</strong>{" "}
-                      {typeof item.bachelorarbeit === "string" ? item.bachelorarbeit : item.bachelorarbeit[language]}
-                    </p>
-                  )}
-                </div>
+                {active && !item.parallel && (
+                  <span
+                    className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium"
+                    style={{ color: ACCENT, backgroundColor: "rgba(184,146,74,0.12)", border: `1px solid ${ACCENT}80` }}
+                  >
+                    {language === "de" ? "Noch aktiv" : "Ongoing"}
+                  </span>
+                )}
               </div>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
+              <p className={`mt-1 text-base font-medium ${textContainerClass}`} style={{ color: ACCENT }}>
+                {role}
+              </p>
+              {employer && (
+                <p className={`text-lg font-bold text-[#1a365d] ${textContainerClass}`}>{employer}</p>
+              )}
+              {item.details && (
+                <p className={`mt-2 text-sm text-gray-600 text-justify ${textContainerClass}`}>
+                  {typeof item.details === "string" ? item.details : item.details[language]}
+                </p>
+              )}
+              {item.dissertation && (
+                <p className={`mt-2 text-sm text-gray-600 ${textContainerClass}`}>
+                  <strong className="text-[#1a365d]">{language === "de" ? "Dissertation" : "Dissertation"}:</strong>{" "}
+                  {typeof item.dissertation === "string" ? item.dissertation : item.dissertation[language]}
+                </p>
+              )}
+              {item.masterarbeit && (
+                <p className={`mt-2 text-sm text-gray-600 ${textContainerClass}`}>
+                  <strong className="text-[#1a365d]">{language === "de" ? "Masterarbeit" : "Master's Thesis"}:</strong>{" "}
+                  {typeof item.masterarbeit === "string" ? item.masterarbeit : item.masterarbeit[language]}
+                </p>
+              )}
+              {item.bachelorarbeit && (
+                <p className={`mt-2 text-sm text-gray-600 ${textContainerClass}`}>
+                  <strong className="text-[#1a365d]">
+                    {language === "de" ? "Bachelorarbeit" : "Bachelor's Thesis"}:
+                  </strong>{" "}
+                  {typeof item.bachelorarbeit === "string" ? item.bachelorarbeit : item.bachelorarbeit[language]}
+                </p>
+              )}
+              {item.tools && (
+                <p className={`mt-2 text-sm text-gray-600 ${textContainerClass}`}>
+                  <strong className="text-[#1a365d]">{language === "de" ? "Werkzeuge" : "Tools"}:</strong> {item.tools}
+                </p>
+              )}
+              {item.website && (
+                <p className={`mt-2 text-sm ${textContainerClass}`}>
+                  <a
+                    href={`https://${item.website}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium hover:underline"
+                    style={{ color: ACCENT }}
+                  >
+                    {item.website}
+                  </a>
+                </p>
+              )}
+            </li>
+          )
+        })}
+      </ol>
+    </div>
+  )
+}
+
+// Card used for publications, talks and industry projects
+const InfoCard = ({ item }) => {
+  const { language } = useLanguage()
+  const title = typeof item.title === "string" ? item.title : item.title[language]
+  const people = item.authors || item.author
+  const venue = item.conference
+    ? typeof item.conference === "string"
+      ? item.conference
+      : item.conference[language]
+    : item.book
+      ? typeof item.book === "string"
+        ? item.book
+        : item.book[language]
+      : null
+  const location = item.location
+    ? typeof item.location === "string"
+      ? item.location
+      : item.location[language]
+    : null
+  const mainInfo = item.mainInfo
+    ? typeof item.mainInfo === "string"
+      ? item.mainInfo
+      : item.mainInfo[language]
+    : null
+  const description = item.details
+    ? typeof item.details === "string"
+      ? item.details
+      : item.details[language]
+    : null
+  const venueLine = [venue, location, item.pages].filter(Boolean).join(", ")
+  return (
+    <div className="bg-white rounded-lg shadow-md p-5 flex gap-4 hover:shadow-lg transition-shadow">
+      <span
+        className="flex-shrink-0 inline-flex items-center justify-center h-8 min-w-[3.5rem] px-2.5 rounded-md text-sm font-semibold whitespace-nowrap"
+        style={{ color: ACCENT, backgroundColor: "rgba(184,146,74,0.12)", border: `1px solid ${ACCENT}66` }}
+      >
+        {item.year}
+      </span>
+      <div className="flex-1 min-w-0">
+        <h4 className={`font-display text-base md:text-lg font-semibold text-[#1a365d] ${textContainerClass}`}>
+          {title}
+        </h4>
+        {people && <p className={`mt-1 text-sm text-gray-500 ${textContainerClass}`}>{people}</p>}
+        {mainInfo && <p className={`mt-1 text-sm text-gray-500 ${textContainerClass}`}>{mainInfo}</p>}
+        {venueLine && <p className={`mt-1 text-sm italic text-gray-500 ${textContainerClass}`}>{venueLine}</p>}
+        {description && (
+          <p className={`mt-2 text-sm text-gray-600 text-justify ${textContainerClass}`}>{description}</p>
+        )}
+        {item.tools && (
+          <p className={`mt-2 text-sm text-gray-600 ${textContainerClass}`}>
+            <strong className="text-[#1a365d]">{language === "de" ? "Werkzeuge" : "Tools"}:</strong> {item.tools}
+          </p>
+        )}
+        {item.doi && (
+          <a
+            href={`https://doi.org/${item.doi}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 inline-flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium text-white transition-colors hover:brightness-110"
+            style={{ backgroundColor: ACCENT }}
+          >
+            {language === "de" ? "DOI öffnen →" : "Open DOI →"}
+          </a>
+        )}
+      </div>
+    </div>
+  )
+}
+
+// Groups card entries by year, newest year first (used for publications / talks)
+const CardListByYear = ({ items }) => {
+  const groups: Record<string, any[]> = {}
+  items.forEach((it) => {
+    const yr = String(it.year)
+    groups[yr] = groups[yr] || []
+    groups[yr].push(it)
+  })
+  const years = Object.keys(groups).sort((a, b) => Number(b) - Number(a))
+  return (
+    <div className="space-y-8">
+      {years.map((yr) => (
+        <div key={yr}>
+          <h4 className="font-display text-xl font-bold text-[#1a365d] mb-3 flex items-center gap-3">
+            <span>{yr}</span>
+            <span className="h-px flex-1" style={{ backgroundColor: `${ACCENT}4d` }} />
+          </h4>
+          <div className="space-y-4">
+            {groups[yr].map((it, i) => (
+              <InfoCard key={i} item={it} />
+            ))}
+          </div>
+        </div>
       ))}
     </div>
   )
@@ -1387,8 +1395,9 @@ const Home: React.FC = () => {
           key={section.id}
           href={`#${section.id}`}
           className={`w-3 h-3 rounded-full transition-all duration-300 ${
-            activeSection === section.id ? "bg-blue-500 w-4 h-4" : "bg-gray-300 hover:bg-blue-300"
+            activeSection === section.id ? "w-4 h-4" : "bg-gray-300 hover:bg-gray-400"
           }`}
+          style={activeSection === section.id ? { backgroundColor: ACCENT } : undefined}
           aria-label={`Navigiere zu ${section.title}`}
           onClick={(e) => {
             e.preventDefault()
@@ -1436,6 +1445,22 @@ const Home: React.FC = () => {
               <p className={`text-lg md:text-xl text-[#1a365d] mt-4 opacity-80 ${textContainerClass}`}>
                 {t("jobTitles.phd")}
               </p>
+              <a
+                href="https://thermalnext.de"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1.5 shadow-sm ring-1 transition-colors hover:bg-white w-fit"
+                style={{ borderColor: ACCENT }}
+                aria-label="ThermalNext (öffnet in neuem Tab)"
+              >
+                <Image
+                  src="/images/thermalnext-logo.png"
+                  alt="ThermalNext"
+                  width={96}
+                  height={24}
+                  className="h-6 w-auto object-contain"
+                />
+              </a>
               <div className="flex space-x-4 mt-6">
                 <a
                   href="https://www.linkedin.com/in/manuel-kipp-09624b174"
@@ -1590,38 +1615,50 @@ const Home: React.FC = () => {
                 >
                   {t("skills.title")}
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {skills.map((skill, index) => (
-                    <motion.div
-                      key={index}
-                      className="flex flex-col bg-gray-50 p-6 rounded-lg shadow-md"
-                      initial={{ opacity: 0, y: 20 }}
+                <div className="space-y-5">
+                  {/* Schwerpunkt – dezent hervorgehoben (gefüllte Pill) */}
+                  <div className="flex flex-wrap justify-center gap-3">
+                    <motion.span
+                      className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-base font-semibold text-white shadow-sm"
+                      style={{ backgroundColor: ACCENT }}
+                      initial={{ opacity: 0, y: 12 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      transition={{ duration: 0.4 }}
                     >
-                      <div className="flex items-center space-x-4 mb-4">
-                        <span className="text-3xl text-[#1a365d]">
-                          {getIcon(typeof skill.name === "string" ? skill.name : skill.name[language])}
-                        </span>
-                        <p className={`text-lg text-[#1a365d] font-medium ${textContainerClass}`}>
-                          {typeof skill.name === "string" ? skill.name : skill.name[language]}
-                        </p>
-                      </div>
-                      <div className="relative w-full h-4 bg-gray-200 rounded-full overflow-hidden">
-                        <motion.div
-                          className="absolute top-0 left-0 h-full bg-blue-600 rounded-full"
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.percentage}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1.5, ease: "easeInOut" }}
-                        />
-                      </div>
-                      <p className={`text-sm text-gray-600 mt-2 ${textContainerClass}`}>
-                        {skill.years} {language === "de" ? "Jahre" : "years"}
-                      </p>
-                    </motion.div>
-                  ))}
+                      <FaCube className="text-sm" />
+                      {featuredSkill.name[language]}
+                    </motion.span>
+                    {primarySkills.map((skill, index) => (
+                      <motion.span
+                        key={skill}
+                        className="inline-flex items-center rounded-full border border-gray-300 bg-white px-5 py-2.5 text-base font-medium text-[#1a365d] transition-colors"
+                        whileHover={{ borderColor: ACCENT, color: ACCENT }}
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: (index + 1) * 0.05 }}
+                      >
+                        {skill}
+                      </motion.span>
+                    ))}
+                    {secondarySkills.map((skill, index) => (
+                      <motion.span
+                        key={typeof skill === "string" ? skill : skill.de}
+                        className="inline-flex items-center rounded-full border border-gray-200 bg-gray-50 px-4 py-1.5 text-sm font-medium text-gray-500"
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: (primarySkills.length + 1 + index) * 0.05 }}
+                      >
+                        {typeof skill === "string" ? skill : skill[language]}
+                      </motion.span>
+                    ))}
+                  </div>
+                  {/* Ehrliche, zurückhaltende Einordnung */}
+                  <p className={`text-center text-sm text-gray-500 max-w-2xl mx-auto leading-relaxed ${textContainerClass}`}>
+                    {featuredSkill.tagline[language]}
+                  </p>
                 </div>
               </div>
             </section>
@@ -1666,7 +1703,7 @@ const Home: React.FC = () => {
                             a 15.9155 15.9155 0 0 1 0 31.831
                             a 15.9155 15.9155 0 0 1 0 -31.831"
                             fill="none"
-                            stroke="#3b82f6"
+                            stroke={ACCENT}
                             strokeWidth="3"
                             initial={{ pathLength: 0 }}
                             whileInView={{ pathLength: lang.percentage / 100 }}
@@ -1705,41 +1742,60 @@ const Home: React.FC = () => {
                 <div className="space-y-6">
                   {/* Firmenlogos */}
                   <motion.div
-                    className="bg-white rounded-lg shadow-lg p-8 relative"
+                    className="bg-white rounded-lg shadow-lg p-6 md:p-8 relative"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                   >
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center justify-items-center">
+                    <div className="flex md:grid md:grid-cols-3 lg:grid-cols-6 gap-8 items-center md:justify-items-center overflow-x-auto no-scrollbar md:overflow-visible">
                       {[
-                        "/images/audi-logo.svg",
-                        "/images/bmw.svg",
-                        "https://urlyaqdfmocz1d9x.public.blob.vercel-storage.com/logo%20fendt-0YxhORcYwjylvclVGIvu4p7OwYtmA2.svg",
-                        "/images/dlr-logo.svg",
-                        "/images/logo-20gentherm.png",
-                      ].map((src, index) => (
+                        { src: "/images/audi-logo.svg", alt: "Audi" },
+                        { src: "/images/bmw.svg", alt: "BMW" },
+                        {
+                          src: "https://urlyaqdfmocz1d9x.public.blob.vercel-storage.com/logo%20fendt-0YxhORcYwjylvclVGIvu4p7OwYtmA2.svg",
+                          alt: "Fendt",
+                        },
+                        { src: "/images/dlr-logo.svg", alt: "DLR" },
+                        { src: "/images/logo-20gentherm.png", alt: "Gentherm" },
+                        { src: null, alt: "KNDS" },
+                      ].map((logo, index) => (
                         <motion.div
-                          key={src}
-                          className="flex flex-col items-center"
+                          key={logo.alt}
+                          className="flex flex-col items-center flex-shrink-0"
                           initial={{ opacity: 0, x: -50 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           viewport={{ once: true }}
                           transition={{ duration: 0.5, delay: index * 0.1 }}
                         >
-                          <Image
-                            src={src || "/placeholder.svg"}
-                            alt={`Company Logo ${index + 1}`}
-                            width={150}
-                            height={75}
-                            className="object-contain hover:scale-110 transition-transform duration-200"
-                          />
+                          {logo.src ? (
+                            <Image
+                              src={logo.src || "/placeholder.svg"}
+                              alt={`${logo.alt} Logo`}
+                              width={150}
+                              height={75}
+                              className="object-contain h-[60px] w-auto hover:scale-110 transition-transform duration-200"
+                            />
+                          ) : (
+                            <span className="flex h-[60px] items-center justify-center text-2xl font-bold tracking-wide text-[#1a365d] hover:scale-110 transition-transform duration-200">
+                              {logo.alt}
+                            </span>
+                          )}
                         </motion.div>
                       ))}
                     </div>
                   </motion.div>
                   {/* Projekte */}
-                  <ErfahrungBlock title={t("industryExperience.projects")} content={erfahrungContent.projekte} />
+                  <div className="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h3 className="font-display text-2xl font-semibold text-[#1a365d] mb-6">
+                      {t("industryExperience.projects")}
+                    </h3>
+                    <div className="space-y-4">
+                      {erfahrungContent.projekte.map((item, index) => (
+                        <InfoCard key={index} item={item} />
+                      ))}
+                    </div>
+                  </div>
                   {/* Slider mit Projektbildern */}
                   <div className="bg-white rounded-lg shadow-lg p-8 mt-6">
                     <h3 className={`text-xl font-semibold text-[#1a365d] mb-4 ${textContainerClass}`}>
@@ -1767,10 +1823,9 @@ const Home: React.FC = () => {
                   {t("career.title")}
                 </h2>
                 <div className="space-y-6">
-                  <ErfahrungBlock title={t("career.professional")} content={erfahrungContent.berufserfahrung} />
-                  <ErfahrungBlock title={t("career.selfEmployed")} content={erfahrungContent.selbstständigkeit} />
-                  <ErfahrungBlock title={t("career.academic")} content={erfahrungContent.akademisch} />
-                  <ErfahrungBlock title={t("career.practical")} content={erfahrungContent.praktisch} />
+                  <TimelineBlock title={t("career.professional")} content={erfahrungContent.berufserfahrung} />
+                  <TimelineBlock title={t("career.academic")} content={erfahrungContent.akademisch} />
+                  <TimelineBlock title={t("career.practical")} content={erfahrungContent.praktisch} />
                 </div>
               </div>
             </section>
@@ -1790,9 +1845,19 @@ const Home: React.FC = () => {
                 >
                   {t("publications.title")}
                 </h2>
-                <div className="space-y-6">
-                  <ErfahrungBlock title={t("publications.paper")} content={veröffentlichungenContent.paper} />
-                  <ErfahrungBlock title={t("publications.talks")} content={veröffentlichungenContent.vorträge} />
+                <div className="space-y-10">
+                  <div>
+                    <h3 className="font-display text-2xl font-semibold text-[#1a365d] mb-6">
+                      {t("publications.paper")}
+                    </h3>
+                    <CardListByYear items={veröffentlichungenContent.paper} />
+                  </div>
+                  <div>
+                    <h3 className="font-display text-2xl font-semibold text-[#1a365d] mb-6">
+                      {t("publications.talks")}
+                    </h3>
+                    <CardListByYear items={veröffentlichungenContent.vorträge} />
+                  </div>
                 </div>
               </div>
             </section>
