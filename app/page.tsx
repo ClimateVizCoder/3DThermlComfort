@@ -52,20 +52,19 @@ const languages = [
   },
 ]
 
-// Skills als Tag-Grid: Primär (Kernkompetenzen) und Sekundär (ergänzend)
-const primarySkills = [
-  "STAR-CCM+",
-  "Ansys CFX/FLUENT",
-  "Python (ML/Data)",
-  "MATLAB/Simulink",
-  "CATIA V5",
-  "RAMSIS",
-]
+// Hervorgehobene Kernkompetenz (Spitzen-Skill)
+const featuredSkill = {
+  name: { de: "Rapid Prototyping & 3D-Druck", en: "Rapid Prototyping & 3D Printing" },
+  tagline: {
+    de: "Vom CAD-Konzept zum funktionsfähigen Klimadummy – additive Fertigung als Kernhandwerk.",
+    en: "From CAD concept to a functional thermal dummy — additive manufacturing as a core craft.",
+  },
+}
 
-const secondarySkills = [
-  { de: "Rapid Prototyping / 3D Druck", en: "Rapid Prototyping / 3D Printing" },
-  { de: "Microsoft Office", en: "Microsoft Office" },
-]
+// Skills als Tag-Grid: Primär (Kernkompetenzen) und Sekundär (ergänzend)
+const primarySkills = ["STAR-CCM+", "Ansys CFX/FLUENT", "Python (ML/Data)", "MATLAB/Simulink", "CATIA V5", "RAMSIS"]
+
+const secondarySkills = [{ de: "Microsoft Office", en: "Microsoft Office" }]
 
 // Hobbies-Daten mit Übersetzungen
 const hobbies = [
@@ -719,7 +718,8 @@ function ProjectImageSlider() {
         {images.map((_, index) => (
           <button
             key={index}
-            className={`w-2 h-2 rounded-full transition-colors ${index === imageIndex ? "bg-blue-600" : "bg-gray-300"}`}
+            className={`w-2 h-2 rounded-full transition-colors ${index === imageIndex ? "" : "bg-gray-300"}`}
+            style={index === imageIndex ? { backgroundColor: ACCENT } : undefined}
             onClick={() => setPage([index, index > imageIndex ? 1 : -1])}
             aria-label={`Gehe zu Bild ${index + 1}`}
           />
@@ -1127,7 +1127,8 @@ const ContactSection = () => {
   )
 }
 
-const GOLD = "#B8924A"
+const ACCENT = "#E63C2D"
+const ACCENT_DARK = "#C32A1C"
 
 const isActiveEntry = (item) => Boolean(item.active) || /Heute|Present|Today/i.test(item.year || "")
 
@@ -1139,7 +1140,7 @@ const TimelineBlock = ({ title, content }) => {
       <h3 className={`font-display text-2xl font-semibold text-[#1a365d] mb-6 leading-relaxed ${textContainerClass}`}>
         {title}
       </h3>
-      <ol className="relative ml-2 border-l-2 border-[#B8924A]/30 space-y-8">
+      <ol className="relative ml-2 border-l-2 space-y-8" style={{ borderColor: "rgba(230,60,45,0.3)" }}>
         {content.map((item, index) => {
           const active = isActiveEntry(item)
           const role = typeof item.title === "string" ? item.title : item.title[language]
@@ -1155,16 +1156,16 @@ const TimelineBlock = ({ title, content }) => {
                 className={`absolute -left-[9px] top-1 w-4 h-4 rounded-full border-2 border-white ${
                   active ? "gold-dot-pulse" : ""
                 }`}
-                style={{ backgroundColor: active ? GOLD : "rgba(26,54,93,0.3)" }}
+                style={{ backgroundColor: active ? ACCENT : "rgba(26,54,93,0.3)" }}
               />
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                <span className="text-sm font-semibold whitespace-nowrap" style={{ color: GOLD }}>
+                <span className="text-sm font-semibold whitespace-nowrap" style={{ color: ACCENT }}>
                   {item.year}
                 </span>
                 {item.parallel && (
                   <span
                     className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium"
-                    style={{ color: GOLD, backgroundColor: "rgba(184,146,74,0.12)", border: `1px solid ${GOLD}80` }}
+                    style={{ color: ACCENT, backgroundColor: "rgba(184,146,74,0.12)", border: `1px solid ${ACCENT}80` }}
                   >
                     {language === "de" ? "Parallel" : "Concurrent"}
                   </span>
@@ -1172,13 +1173,13 @@ const TimelineBlock = ({ title, content }) => {
                 {active && !item.parallel && (
                   <span
                     className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium"
-                    style={{ color: GOLD, backgroundColor: "rgba(184,146,74,0.12)", border: `1px solid ${GOLD}80` }}
+                    style={{ color: ACCENT, backgroundColor: "rgba(184,146,74,0.12)", border: `1px solid ${ACCENT}80` }}
                   >
                     {language === "de" ? "Noch aktiv" : "Ongoing"}
                   </span>
                 )}
               </div>
-              <p className={`mt-1 text-base font-medium ${textContainerClass}`} style={{ color: GOLD }}>
+              <p className={`mt-1 text-base font-medium ${textContainerClass}`} style={{ color: ACCENT }}>
                 {role}
               </p>
               {employer && (
@@ -1221,7 +1222,7 @@ const TimelineBlock = ({ title, content }) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-medium hover:underline"
-                    style={{ color: GOLD }}
+                    style={{ color: ACCENT }}
                   >
                     {item.website}
                   </a>
@@ -1269,7 +1270,7 @@ const InfoCard = ({ item }) => {
     <div className="bg-white rounded-lg shadow-md p-5 flex gap-4 hover:shadow-lg transition-shadow">
       <span
         className="flex-shrink-0 inline-flex items-center justify-center h-8 min-w-[3.5rem] px-2.5 rounded-md text-sm font-semibold whitespace-nowrap"
-        style={{ color: GOLD, backgroundColor: "rgba(184,146,74,0.12)", border: `1px solid ${GOLD}66` }}
+        style={{ color: ACCENT, backgroundColor: "rgba(184,146,74,0.12)", border: `1px solid ${ACCENT}66` }}
       >
         {item.year}
       </span>
@@ -1294,7 +1295,7 @@ const InfoCard = ({ item }) => {
             target="_blank"
             rel="noopener noreferrer"
             className="mt-3 inline-flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium text-white transition-colors hover:brightness-110"
-            style={{ backgroundColor: GOLD }}
+            style={{ backgroundColor: ACCENT }}
           >
             {language === "de" ? "DOI öffnen →" : "Open DOI →"}
           </a>
@@ -1319,7 +1320,7 @@ const CardListByYear = ({ items }) => {
         <div key={yr}>
           <h4 className="font-display text-xl font-bold text-[#1a365d] mb-3 flex items-center gap-3">
             <span>{yr}</span>
-            <span className="h-px flex-1" style={{ backgroundColor: `${GOLD}4d` }} />
+            <span className="h-px flex-1" style={{ backgroundColor: `${ACCENT}4d` }} />
           </h4>
           <div className="space-y-4">
             {groups[yr].map((it, i) => (
@@ -1394,8 +1395,9 @@ const Home: React.FC = () => {
           key={section.id}
           href={`#${section.id}`}
           className={`w-3 h-3 rounded-full transition-all duration-300 ${
-            activeSection === section.id ? "bg-blue-500 w-4 h-4" : "bg-gray-300 hover:bg-blue-300"
+            activeSection === section.id ? "w-4 h-4" : "bg-gray-300 hover:bg-gray-400"
           }`}
+          style={activeSection === section.id ? { backgroundColor: ACCENT } : undefined}
           aria-label={`Navigiere zu ${section.title}`}
           onClick={(e) => {
             e.preventDefault()
@@ -1448,7 +1450,7 @@ const Home: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1.5 shadow-sm ring-1 transition-colors hover:bg-white w-fit"
-                style={{ borderColor: GOLD }}
+                style={{ borderColor: ACCENT }}
                 aria-label="ThermalNext (öffnet in neuem Tab)"
               >
                 <Image
@@ -1502,7 +1504,7 @@ const Home: React.FC = () => {
               transition={{ duration: 0.5 }}
             >
               <div className="w-full max-w-md">
-                <div className="gold-ring-pulse rounded-lg" style={{ border: `2px solid ${GOLD}` }}>
+                <div className="gold-ring-pulse rounded-lg" style={{ border: `2px solid ${ACCENT}` }}>
                   <Image
                     src="/images/manuel-kipp-profile.png"
                     alt="Manuel Kipp Portrait"
@@ -1615,35 +1617,97 @@ const Home: React.FC = () => {
                 >
                   {t("skills.title")}
                 </h2>
-                <div className="space-y-8">
-                  <div className="flex flex-wrap justify-center gap-3">
-                    {primarySkills.map((skill, index) => (
-                      <motion.span
-                        key={skill}
-                        className="inline-flex items-center rounded-full bg-white px-5 py-2.5 text-base font-semibold text-[#1a365d] shadow-sm"
-                        style={{ border: `2px solid ${GOLD}` }}
-                        initial={{ opacity: 0, y: 12 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: index * 0.05 }}
-                      >
-                        {skill}
-                      </motion.span>
-                    ))}
-                  </div>
-                  <div className="flex flex-wrap justify-center gap-3">
-                    {secondarySkills.map((skill, index) => (
-                      <motion.span
-                        key={typeof skill === "string" ? skill : skill.de}
-                        className="inline-flex items-center rounded-full border border-gray-300 bg-gray-50 px-4 py-1.5 text-sm font-medium text-gray-600"
-                        initial={{ opacity: 0, y: 12 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: index * 0.05 }}
-                      >
-                        {typeof skill === "string" ? skill : skill[language]}
-                      </motion.span>
-                    ))}
+                <div className="space-y-10">
+                  {/* Hervorgehobene Kernkompetenz */}
+                  <motion.div
+                    className="accent-shine relative overflow-hidden rounded-2xl p-8 md:p-10 text-white shadow-xl"
+                    style={{ background: `linear-gradient(135deg, ${ACCENT} 0%, ${ACCENT_DARK} 100%)` }}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    {/* Driftendes konisches Glühen */}
+                    <div
+                      aria-hidden="true"
+                      className="accent-glow-spin pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full opacity-30 blur-2xl"
+                      style={{ background: "conic-gradient(from 0deg, rgba(255,255,255,0.6), transparent 60%)" }}
+                    />
+                    <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                      <div className="flex items-start gap-5">
+                        <motion.span
+                          className="flex-shrink-0 grid place-items-center rounded-2xl bg-white/15 backdrop-blur-sm"
+                          style={{ width: 72, height: 72 }}
+                          animate={{ y: [0, -6, 0] }}
+                          transition={{ duration: 3, ease: "easeInOut", repeat: Number.POSITIVE_INFINITY }}
+                        >
+                          <FaCube className="text-4xl text-white" />
+                        </motion.span>
+                        <div>
+                          <span className="inline-flex items-center rounded-full bg-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider">
+                            {language === "de" ? "Spitzenkompetenz" : "Top Expertise"}
+                          </span>
+                          <h3 className={`font-display text-2xl md:text-3xl font-bold mt-2 ${textContainerClass}`}>
+                            {featuredSkill.name[language]}
+                          </h3>
+                          <p className={`mt-2 max-w-xl text-white/85 leading-relaxed ${textContainerClass}`}>
+                            {featuredSkill.tagline[language]}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-start md:items-end">
+                        <div className="flex items-baseline gap-1">
+                          <span className="font-display text-5xl md:text-6xl font-bold leading-none">13</span>
+                          <span className="text-lg font-medium text-white/85">
+                            {language === "de" ? "Jahre" : "yrs"}
+                          </span>
+                        </div>
+                        <div className="mt-3 h-2 w-40 overflow-hidden rounded-full bg-white/25">
+                          <motion.div
+                            className="h-full rounded-full bg-white"
+                            initial={{ width: 0 }}
+                            whileInView={{ width: "96%" }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1.4, ease: "easeOut", delay: 0.3 }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Weitere Kernkompetenzen */}
+                  <div>
+                    <p className="text-center text-sm font-semibold uppercase tracking-wider text-gray-400 mb-4">
+                      {language === "de" ? "Werkzeuge & Methoden" : "Tools & Methods"}
+                    </p>
+                    <div className="flex flex-wrap justify-center gap-3">
+                      {primarySkills.map((skill, index) => (
+                        <motion.span
+                          key={skill}
+                          className="inline-flex items-center rounded-full bg-white px-5 py-2.5 text-base font-semibold text-[#1a365d] shadow-sm transition-colors hover:text-white"
+                          style={{ border: `2px solid ${ACCENT}` }}
+                          whileHover={{ scale: 1.06, backgroundColor: ACCENT }}
+                          initial={{ opacity: 0, y: 12 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.4, delay: index * 0.05 }}
+                        >
+                          {skill}
+                        </motion.span>
+                      ))}
+                      {secondarySkills.map((skill, index) => (
+                        <motion.span
+                          key={typeof skill === "string" ? skill : skill.de}
+                          className="inline-flex items-center rounded-full border border-gray-300 bg-gray-50 px-4 py-1.5 text-sm font-medium text-gray-500"
+                          initial={{ opacity: 0, y: 12 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.4, delay: (primarySkills.length + index) * 0.05 }}
+                        >
+                          {typeof skill === "string" ? skill : skill[language]}
+                        </motion.span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1689,7 +1753,7 @@ const Home: React.FC = () => {
                             a 15.9155 15.9155 0 0 1 0 31.831
                             a 15.9155 15.9155 0 0 1 0 -31.831"
                             fill="none"
-                            stroke="#3b82f6"
+                            stroke={ACCENT}
                             strokeWidth="3"
                             initial={{ pathLength: 0 }}
                             whileInView={{ pathLength: lang.percentage / 100 }}

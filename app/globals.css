@@ -45,41 +45,71 @@
   }
 }
 
-/* Gold accent (shared with thermalnext.de design language) */
+/* Brand accent (shared with thermalnext.de design language) */
 :root {
-  --gold: #b8924a;
+  --accent-brand: #e63c2d;
+  --accent-brand-dark: #c32a1c;
 }
 
-/* Slow pulsing gold ring around the hero profile image */
-@keyframes goldRingPulse {
+/* Slow pulsing accent ring around the hero profile image */
+@keyframes accentRingPulse {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(184, 146, 74, 0.55);
-    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(230, 60, 45, 0.5);
   }
   50% {
-    box-shadow: 0 0 0 14px rgba(184, 146, 74, 0);
-    opacity: 0.85;
+    box-shadow: 0 0 0 16px rgba(230, 60, 45, 0);
   }
 }
 
 .gold-ring-pulse {
-  animation: goldRingPulse 4s ease-in-out infinite;
+  animation: accentRingPulse 4s ease-in-out infinite;
 }
 
 /* Pulsing dot for "active / Heute" timeline entries */
-@keyframes goldDotPulse {
+@keyframes accentDotPulse {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(184, 146, 74, 0.6);
+    box-shadow: 0 0 0 0 rgba(230, 60, 45, 0.6);
   }
   50% {
-    box-shadow: 0 0 0 8px rgba(184, 146, 74, 0);
+    box-shadow: 0 0 0 8px rgba(230, 60, 45, 0);
   }
 }
 
 .gold-dot-pulse {
-  animation: goldDotPulse 2.2s ease-in-out infinite;
+  animation: accentDotPulse 2.2s ease-in-out infinite;
+}
+
+/* Animated gradient shine sweeping across the featured skill card */
+@keyframes accentShine {
+  0% {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  100% {
+    transform: translateX(240%) skewX(-18deg);
+  }
+}
+.accent-shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  animation: accentShine 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Slowly drifting conic glow behind the featured skill */
+@keyframes accentGlowSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.accent-glow-spin {
+  animation: accentGlowSpin 16s linear infinite;
 }
 
 /* Hide scrollbar for the mobile logo strip while keeping scroll */
@@ -89,4 +119,14 @@
 }
 .no-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .gold-ring-pulse,
+  .gold-dot-pulse,
+  .accent-shine::after,
+  .accent-glow-spin {
+    animation: none;
+  }
 }
