@@ -1132,78 +1132,110 @@ const ACCENT_DARK = "#C32A1C"
 
 const isActiveEntry = (item) => Boolean(item.active) || /Heute|Present|Today/i.test(item.year || "")
 
-// Permanent, open vertical timeline (replaces the old accordion pattern)
-const TimelineBlock = ({ title, content }) => {
+// Single interactive timeline entry: shows only the essentials, reveals details on hover/click
+const TimelineItem = ({ item }) => {
   const { language } = useLanguage()
+  const [open, setOpen] = useState(false)
+  const active = isActiveEntry(item)
+  const role = typeof item.title === "string" ? item.title : item.title[language]
+  const employer = item.mainInfo
+    ? typeof item.mainInfo === "string"
+      ? item.mainInfo
+      : item.mainInfo[language]
+    : null
+
+  const hasDetails =
+    item.details || item.dissertation || item.masterarbeit || item.bachelorarbeit || item.tools || item.website
+
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 mb-6">
-      <h3 className={`font-display text-2xl font-semibold text-[#1a365d] mb-6 leading-relaxed ${textContainerClass}`}>
-        {title}
-      </h3>
-      <ol className="relative ml-2 border-l-2 space-y-8" style={{ borderColor: "rgba(230,60,45,0.3)" }}>
-        {content.map((item, index) => {
-          const active = isActiveEntry(item)
-          const role = typeof item.title === "string" ? item.title : item.title[language]
-          const employer = item.mainInfo
-            ? typeof item.mainInfo === "string"
-              ? item.mainInfo
-              : item.mainInfo[language]
-            : null
-          return (
-            <li key={index} className="relative pl-6 md:pl-8">
-              <span
-                aria-hidden="true"
-                className={`absolute -left-[9px] top-1 w-4 h-4 rounded-full border-2 border-white ${
-                  active ? "gold-dot-pulse" : ""
-                }`}
-                style={{ backgroundColor: active ? ACCENT : "rgba(26,54,93,0.3)" }}
-              />
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                <span className="text-sm font-semibold whitespace-nowrap" style={{ color: ACCENT }}>
-                  {item.year}
-                </span>
-                {item.parallel && (
-                  <span
-                    className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium"
-                    style={{ color: ACCENT, backgroundColor: "rgba(184,146,74,0.12)", border: `1px solid ${ACCENT}80` }}
-                  >
-                    {language === "de" ? "Parallel" : "Concurrent"}
-                  </span>
-                )}
-                {active && !item.parallel && (
-                  <span
-                    className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium"
-                    style={{ color: ACCENT, backgroundColor: "rgba(184,146,74,0.12)", border: `1px solid ${ACCENT}80` }}
-                  >
-                    {language === "de" ? "Noch aktiv" : "Ongoing"}
-                  </span>
-                )}
-              </div>
-              <p className={`mt-1 text-base font-medium ${textContainerClass}`} style={{ color: ACCENT }}>
-                {role}
-              </p>
-              {employer && (
-                <p className={`text-lg font-bold text-[#1a365d] ${textContainerClass}`}>{employer}</p>
-              )}
+    <li
+      className="relative pl-6 md:pl-8"
+      onMouseEnter={() => hasDetails && setOpen(true)}
+      onMouseLeave={() => hasDetails && setOpen(false)}
+    >
+      {/* Animated node */}
+      <motion.span
+        aria-hidden="true"
+        className={`absolute -left-[9px] top-1.5 w-4 h-4 rounded-full border-2 border-white ${
+          active ? "gold-dot-pulse" : ""
+        }`}
+        style={{ backgroundColor: active ? ACCENT : "rgba(26,54,93,0.3)" }}
+        animate={{ scale: open ? 1.35 : 1 }}
+        transition={{ type: "spring", stiffness: 400, damping: 20 }}
+      />
+
+      <motion.button
+        type="button"
+        onClick={() => hasDetails && setOpen((v) => !v)}
+        className={`group w-full text-left rounded-lg -ml-2 pl-2 pr-2 py-2 transition-colors ${
+          hasDetails ? "cursor-pointer hover:bg-gray-50" : "cursor-default"
+        }`}
+        aria-expanded={open}
+      >
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span className="text-sm font-semibold whitespace-nowrap" style={{ color: ACCENT }}>
+            {item.year}
+          </span>
+          {item.parallel && (
+            <span
+              className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium"
+              style={{ color: ACCENT, backgroundColor: "rgba(230,60,45,0.1)", border: `1px solid ${ACCENT}66` }}
+            >
+              {language === "de" ? "Parallel" : "Concurrent"}
+            </span>
+          )}
+          {active && !item.parallel && (
+            <span
+              className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium"
+              style={{ color: ACCENT, backgroundColor: "rgba(230,60,45,0.1)", border: `1px solid ${ACCENT}66` }}
+            >
+              {language === "de" ? "Noch aktiv" : "Ongoing"}
+            </span>
+          )}
+          {hasDetails && (
+            <FaChevronDown
+              className="ml-auto text-xs text-gray-400 transition-transform duration-300 group-hover:text-gray-600"
+              style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
+            />
+          )}
+        </div>
+        <p className={`mt-1 text-base font-medium ${textContainerClass}`} style={{ color: ACCENT }}>
+          {role}
+        </p>
+        {employer && <p className={`text-lg font-bold text-[#1a365d] ${textContainerClass}`}>{employer}</p>}
+      </motion.button>
+
+      {/* Collapsible details */}
+      <AnimatePresence initial={false}>
+        {open && hasDetails && (
+          <motion.div
+            key="details"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+            className="overflow-hidden"
+          >
+            <div className="pl-2 pt-2 pb-1 border-l-2 ml-1 space-y-2" style={{ borderColor: `${ACCENT}33` }}>
               {item.details && (
-                <p className={`mt-2 text-sm text-gray-600 text-justify ${textContainerClass}`}>
+                <p className={`text-sm text-gray-600 text-justify pl-3 ${textContainerClass}`}>
                   {typeof item.details === "string" ? item.details : item.details[language]}
                 </p>
               )}
               {item.dissertation && (
-                <p className={`mt-2 text-sm text-gray-600 ${textContainerClass}`}>
+                <p className={`text-sm text-gray-600 pl-3 ${textContainerClass}`}>
                   <strong className="text-[#1a365d]">{language === "de" ? "Dissertation" : "Dissertation"}:</strong>{" "}
                   {typeof item.dissertation === "string" ? item.dissertation : item.dissertation[language]}
                 </p>
               )}
               {item.masterarbeit && (
-                <p className={`mt-2 text-sm text-gray-600 ${textContainerClass}`}>
+                <p className={`text-sm text-gray-600 pl-3 ${textContainerClass}`}>
                   <strong className="text-[#1a365d]">{language === "de" ? "Masterarbeit" : "Master's Thesis"}:</strong>{" "}
                   {typeof item.masterarbeit === "string" ? item.masterarbeit : item.masterarbeit[language]}
                 </p>
               )}
               {item.bachelorarbeit && (
-                <p className={`mt-2 text-sm text-gray-600 ${textContainerClass}`}>
+                <p className={`text-sm text-gray-600 pl-3 ${textContainerClass}`}>
                   <strong className="text-[#1a365d]">
                     {language === "de" ? "Bachelorarbeit" : "Bachelor's Thesis"}:
                   </strong>{" "}
@@ -1211,12 +1243,12 @@ const TimelineBlock = ({ title, content }) => {
                 </p>
               )}
               {item.tools && (
-                <p className={`mt-2 text-sm text-gray-600 ${textContainerClass}`}>
+                <p className={`text-sm text-gray-600 pl-3 ${textContainerClass}`}>
                   <strong className="text-[#1a365d]">{language === "de" ? "Werkzeuge" : "Tools"}:</strong> {item.tools}
                 </p>
               )}
               {item.website && (
-                <p className={`mt-2 text-sm ${textContainerClass}`}>
+                <p className={`text-sm pl-3 ${textContainerClass}`}>
                   <a
                     href={`https://${item.website}`}
                     target="_blank"
@@ -1228,9 +1260,31 @@ const TimelineBlock = ({ title, content }) => {
                   </a>
                 </p>
               )}
-            </li>
-          )
-        })}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </li>
+  )
+}
+
+// Compact, interactive vertical timeline – essentials by default, details on hover/click
+const TimelineBlock = ({ title, content }) => {
+  const { language } = useLanguage()
+  return (
+    <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 mb-6">
+      <div className="flex items-center justify-between mb-2">
+        <h3 className={`font-display text-2xl font-semibold text-[#1a365d] leading-relaxed ${textContainerClass}`}>
+          {title}
+        </h3>
+      </div>
+      <p className="text-xs text-gray-400 mb-6">
+        {language === "de" ? "Für Details auf einen Eintrag tippen oder fahren" : "Tap or hover an entry for details"}
+      </p>
+      <ol className="relative ml-2 border-l-2 space-y-5" style={{ borderColor: "rgba(230,60,45,0.25)" }}>
+        {content.map((item, index) => (
+          <TimelineItem key={index} item={item} />
+        ))}
       </ol>
     </div>
   )
