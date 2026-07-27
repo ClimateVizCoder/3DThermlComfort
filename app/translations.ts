@@ -69,7 +69,7 @@ export const translations = {
     },
     jobTitles: {
       engineer: "Ingenieur der Fahrzeugtechnik (M.Sc.)",
-      phd: "Doktorand (TU München) · Gründer ThermalNext",
+      phd: "ILS Manager (KNDS) · Gründer ThermalNext · Ehem. Doktorand TU München",
     },
     projects: {
       title: "Projektbilder",
@@ -80,7 +80,7 @@ export const translations = {
     aboutMe: {
       title: "Über mich",
       paragraph1:
-        "Ich bin Ingenieur, Doktorand an der TU München und Gründer von ThermalNext – einem auf Thermomanagement und thermischen Komfort spezialisierten Unternehmen im B2B-Bereich. Mein Arbeitsfeld liegt an der Schnittstelle von Fahrzeugklimatisierung, Strömungssimulation und datengetriebener Modellierung, konkret dort, wo sich thermischer Komfort nicht nur subjektiv bewerten, sondern messtechnisch fassen und numerisch reproduzieren lässt.",
+        "Ich bin Ingenieur, Gründer von ThermalNext – einem auf Thermomanagement und thermischen Komfort spezialisierten Unternehmen im B2B-Bereich – und aktuell als ILS Manager bei KNDS Deutschland tätig. Meine Promotion habe ich an der TU München verfasst. Mein Arbeitsfeld liegt an der Schnittstelle von Fahrzeugklimatisierung, Strömungssimulation und datengetriebener Modellierung, konkret dort, wo sich thermischer Komfort nicht nur subjektiv bewerten, sondern messtechnisch fassen und numerisch reproduzieren lässt.",
       paragraph2:
         "Von 2019 bis 2024 war ich wissenschaftlicher Mitarbeiter am Lehrstuhl für Ergonomie der TU München. In dieser Zeit entstand meine Dissertation über energieeffiziente Klimatisierung hochautomatisierter Fahrzeuge – die zentrale Frage: Wie lassen sich thermischer Komfort und Energieverbrauch bei variablen Sitzpositionen, reduzierten Besetzungsszenarien und passiver Fahrertätigkeit gemeinsam optimieren? Methodisch arbeite ich mit CFD (STAR-CCM+, Ansys CFX/FLUENT), Machine-Learning-Verfahren und experimenteller Validierung. Ein Kernelement ist ein selbst konzipierter segmentierter Klimadummy, der additive Fertigung mit RAMSIS-basierter Körpersegmentierung verbindet und eine reproduzierbare, messkanalaufgelöste Komfortbewertung ermöglicht.",
       paragraph3:
@@ -181,7 +181,7 @@ export const translations = {
     },
     jobTitles: {
       engineer: "Automotive Engineer (M.Sc.)",
-      phd: "PhD Candidate (TU Munich) · Founder of ThermalNext",
+      phd: "ILS Manager (KNDS) · Founder of ThermalNext · Former PhD Researcher, TU Munich",
     },
     projects: {
       title: "Project Images",
@@ -192,7 +192,7 @@ export const translations = {
     aboutMe: {
       title: "About Me",
       paragraph1:
-        "I am an engineer, a PhD candidate at the Technical University of Munich, and the founder of ThermalNext – a B2B company specializing in thermal management and thermal comfort. My work sits at the intersection of vehicle climate control, computational fluid dynamics, and data-driven modeling – specifically where thermal comfort can no longer only be assessed subjectively, but captured through measurement and reproduced numerically.",
+        "I am an engineer, the founder of ThermalNext – a B2B company specializing in thermal management and thermal comfort – and currently an ILS Manager at KNDS Deutschland. I completed my doctoral research at the Technical University of Munich. My work sits at the intersection of vehicle climate control, computational fluid dynamics, and data-driven modeling – specifically where thermal comfort can no longer only be assessed subjectively, but captured through measurement and reproduced numerically.",
       paragraph2:
         "From 2019 to 2024, I worked as a research associate at the Chair of Ergonomics at TU Munich. During this time, I completed my dissertation on energy-efficient climate control for highly automated vehicles – with the central question: how can thermal comfort and energy consumption be jointly optimized under variable seating positions, reduced occupancy scenarios, and passive driver activity? Methodologically, I work with CFD (STAR-CCM+, Ansys CFX/FLUENT), machine learning methods, and experimental validation. A core element is a self-designed segmented thermal dummy that combines additive manufacturing with RAMSIS-based body segmentation, enabling reproducible, measurement-channel-resolved comfort assessment.",
       paragraph3:
