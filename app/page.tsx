@@ -1238,7 +1238,7 @@ const TimelineItem = ({ item }) => {
               style={{ borderColor: `${ACCENT}33` }}
             >
               {item.details && (
-                <p className={`text-sm text-gray-600 text-justify leading-relaxed ${textContainerClass}`}>
+                <p className={`text-sm text-gray-600 text-left sm:text-justify leading-relaxed ${textContainerClass}`}>
                   {typeof item.details === "string" ? item.details : item.details[language]}
                 </p>
               )}
@@ -1344,10 +1344,10 @@ const InfoCard = ({ item }) => {
     : null
   const venueLine = [venue, location, item.pages].filter(Boolean).join(", ")
   return (
-    <div className="bg-white rounded-lg shadow-md p-5 flex gap-4 hover:shadow-lg transition-shadow">
+    <div className="bg-white rounded-lg shadow-md p-4 sm:p-5 flex flex-col sm:flex-row gap-2.5 sm:gap-4 hover:shadow-lg transition-shadow">
       <span
-        className="flex-shrink-0 inline-flex items-center justify-center h-8 min-w-[3.5rem] px-2.5 rounded-md text-sm font-semibold whitespace-nowrap"
-        style={{ color: ACCENT, backgroundColor: "rgba(184,146,74,0.12)", border: `1px solid ${ACCENT}66` }}
+        className="self-start flex-shrink-0 inline-flex items-center justify-center h-7 sm:h-8 px-2.5 rounded-md text-xs sm:text-sm font-semibold whitespace-nowrap"
+        style={{ color: ACCENT, backgroundColor: "rgba(230,60,45,0.1)", border: `1px solid ${ACCENT}66` }}
       >
         {item.year}
       </span>
@@ -1359,7 +1359,9 @@ const InfoCard = ({ item }) => {
         {mainInfo && <p className={`mt-1 text-sm text-gray-500 ${textContainerClass}`}>{mainInfo}</p>}
         {venueLine && <p className={`mt-1 text-sm italic text-gray-500 ${textContainerClass}`}>{venueLine}</p>}
         {description && (
-          <p className={`mt-2 text-sm text-gray-600 text-justify ${textContainerClass}`}>{description}</p>
+          <p className={`mt-2 text-sm text-gray-600 leading-relaxed text-left sm:text-justify ${textContainerClass}`}>
+            {description}
+          </p>
         )}
         {item.tools && (
           <p className={`mt-2 text-sm text-gray-600 ${textContainerClass}`}>
@@ -1464,7 +1466,7 @@ const Home: React.FC = () => {
   // Vertikale Navigation
   const VerticalNavigation = () => (
     <div
-      className="fixed right-4 top-1/2 transform -translate-y-1/2 flex flex-col items-center z-40"
+      className="fixed right-4 top-1/2 transform -translate-y-1/2 hidden md:flex flex-col items-center z-40"
       style={{ height: "40vh", justifyContent: "space-between" }}
     >
       {navigationSections.map((section) => (
