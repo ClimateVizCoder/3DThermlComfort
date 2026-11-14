@@ -175,25 +175,24 @@ const erfahrungContent = {
   berufserfahrung: [
     {
       title: {
-        de: "ILS Manager (Integrated Logistic Support)",
-        en: "ILS Manager (Integrated Logistic Support)",
+        de: "Projektmanager",
+        en: "Project Manager",
       },
       year: "08/2026 - Heute",
       active: true,
-      parallel: true,
       mainInfo: {
         de: "KNDS Deutschland, München, Bayern, Deutschland",
         en: "KNDS Deutschland, Munich, Bavaria, Germany",
       },
       details: {
-        de: "Verantwortung für den Integrated Logistic Support (ILS) komplexer Verteidigungs- und Großsysteme: Planung, Steuerung und Koordination logistischer Unterstützungskonzepte über den gesamten Produktlebenszyklus. Schnittstelle zwischen Engineering, Instandhaltung, Ersatzteilmanagement und Kunde.",
-        en: "Responsible for the Integrated Logistic Support (ILS) of complex defense and large-scale systems: planning, steering, and coordination of logistic support concepts across the entire product life cycle. Interface between engineering, maintenance, spare parts management, and the customer.",
+        de: "Hauptberuflich verantworte ich Projekte rund um komplexe technische Großsysteme: Planung, Steuerung und Koordination über den gesamten Projektverlauf – mit Blick auf Termine, Kosten und Qualität. Schnittstelle zwischen Engineering, Fertigung, Lieferanten und Kunde.",
+        en: "In my main role I am responsible for projects around complex technical large-scale systems: planning, steering and coordination across the entire project – keeping schedule, cost and quality in view. Interface between engineering, manufacturing, suppliers and the customer.",
       },
     },
     {
       title: {
-        de: "Gründer & Experte | Thermischer Komfort & Thermomanagement (HVAC)",
-        en: "Founder & Expert | Thermal Comfort & Thermal Management (HVAC)",
+        de: "Gründer (nebenberuflich) | Thermischer Komfort & Thermomanagement",
+        en: "Founder (part-time) | Thermal Comfort & Thermal Management",
       },
       year: "05/2025 - Heute",
       active: true,
