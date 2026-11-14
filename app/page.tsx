@@ -1545,8 +1545,6 @@ const Home: React.FC = () => {
               </p>
               <h1 className="font-display mt-5 text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] text-[#1a365d] text-balance">
                 {t("hero.headlinePre")}
-                <span style={{ color: ACCENT }}>{t("hero.headlineAccent")}</span>
-                {t("hero.headlinePost")}
               </h1>
               <p className="mt-6 max-w-xl text-base sm:text-lg leading-relaxed text-gray-600 text-pretty">
                 {t("hero.lead")}
@@ -1713,8 +1711,7 @@ const Home: React.FC = () => {
                 <SectionHeader
                   eyebrow={t("intro.skills.eyebrow")}
                   title={t("intro.skills.title")}
-                  lead={t("intro.skills.lead")}
-                />
+                  />
                 <div className="space-y-5">
                   {/* Schwerpunkt – dezent hervorgehoben (gefüllte Pill) */}
                   <div className="flex flex-wrap gap-3">
@@ -1833,8 +1830,7 @@ const Home: React.FC = () => {
                 <SectionHeader
                   eyebrow={t("intro.industry.eyebrow")}
                   title={t("intro.industry.title")}
-                  lead={t("intro.industry.lead")}
-                />
+                  />
                 <div className="space-y-6">
                   {/* Firmenlogos */}
                   <motion.div
@@ -1916,8 +1912,7 @@ const Home: React.FC = () => {
                 <SectionHeader
                   eyebrow={t("intro.career.eyebrow")}
                   title={t("intro.career.title")}
-                  lead={t("intro.career.lead")}
-                />
+                  />
                 <div className="space-y-6">
                   <TimelineBlock title={t("career.professional")} content={erfahrungContent.berufserfahrung} />
                   <TimelineBlock title={t("career.academic")} content={erfahrungContent.akademisch} />
@@ -1939,8 +1934,7 @@ const Home: React.FC = () => {
                 <SectionHeader
                   eyebrow={t("intro.publications.eyebrow")}
                   title={t("intro.publications.title")}
-                  lead={t("intro.publications.lead")}
-                />
+                  />
                 <div className="space-y-10">
                   <div>
                     <h3 className="font-display text-2xl font-semibold text-[#1a365d] mb-6">
@@ -1988,8 +1982,7 @@ const Home: React.FC = () => {
                 <SectionHeader
                   eyebrow={t("intro.contact.eyebrow")}
                   title={t("intro.contact.title")}
-                  lead={t("intro.contact.lead")}
-                />
+                  />
                 <ContactSection />
               </div>
             </section>
