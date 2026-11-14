@@ -2,17 +2,17 @@ import type React from "react"
 import "@/app/globals.css"
 import { Toaster } from "@/components/ui/toaster"
 import { LanguageProvider } from "@/contexts/language-context"
-import { DM_Sans, Fraunces } from "next/font/google"
+import { Inter, Plus_Jakarta_Sans } from "next/font/google"
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-dm-sans",
+  variable: "--font-inter",
   display: "swap",
 })
 
-const fraunces = Fraunces({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-fraunces",
+  variable: "--font-jakarta",
   display: "swap",
 })
 
@@ -22,8 +22,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${fraunces.variable} bg-background`}>
-      <body className="font-sans">
+    <html lang="de" className={`${inter.variable} ${jakarta.variable} bg-background`}>
+      <body className="font-sans antialiased">
         <LanguageProvider>
           {children}
           <Toaster />
@@ -34,5 +34,8 @@ export default function RootLayout({
 }
 
 export const metadata = {
-      generator: 'v0.app'
-    };
+  title: "Manuel Kipp – Projektmanager, Ingenieur & Gründer von ThermalNext",
+  description:
+    "Projektmanager bei KNDS Deutschland, Gründer von ThermalNext und Ingenieur der Fahrzeugtechnik mit Promotion an der TU München.",
+  generator: "v0.app",
+}

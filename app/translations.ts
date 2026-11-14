@@ -42,7 +42,7 @@ export const translations = {
       error: "Fehler beim Senden der Nachricht",
       getInTouch: "Kontakt aufnehmen",
       description:
-        "Für fachliche Anfragen, Industrieprojekte, Forschungskooperationen oder technische Bewertungen im Bereich thermischer Komfort, Fahrzeugklimatisierung, Ergonomie und Klimadummy-basierte Messmethoden bin ich erreichbar über:",
+        "Am schnellsten erreichen Sie mich per E-Mail, über LinkedIn oder direkt über das Formular.",
       thankYou: "Vielen Dank!",
       messageSent: "Ihre Nachricht wurde erfolgreich gesendet.",
     },
@@ -69,7 +69,7 @@ export const translations = {
     },
     jobTitles: {
       engineer: "Ingenieur der Fahrzeugtechnik (M.Sc.)",
-      phd: "ILS Manager (KNDS) · Gründer ThermalNext · Ehem. Doktorand TU München",
+      phd: "Projektmanager (KNDS) · Gründer ThermalNext · Promotion TU München",
     },
     projects: {
       title: "Projektbilder",
@@ -77,14 +77,73 @@ export const translations = {
     footer: {
       rights: "Alle Rechte vorbehalten.",
     },
+    hero: {
+      eyebrow: "Ingenieur Fahrzeugtechnik (M.Sc.)",
+      headlinePre: "Manuel Kipp",
+      headlineAccent: "",
+      headlinePost: "",
+      lead: "Projektmanager bei KNDS Deutschland. Nebenberuflich Gründer von ThermalNext, mit Schwerpunkt auf Simulation und thermischem Komfort.",
+      roles: ["Projektmanager · KNDS", "Gründer · ThermalNext", "Promotion · TU München"],
+      ctaPrimary: "Projekte ansehen",
+      ctaSecondary: "Kontakt aufnehmen",
+    },
+    intro: {
+      about: { eyebrow: "Über mich", title: "Ingenieur und Projektmanager" },
+      skills: {
+        eyebrow: "Fähigkeiten",
+        title: "Software und Methoden",
+        lead: "",
+      },
+      languages: { eyebrow: "Sprachen", title: "Deutsch, Englisch, Französisch" },
+      industry: {
+        eyebrow: "Erfahrung",
+        title: "Industrieprojekte",
+        lead: "",
+      },
+      career: {
+        eyebrow: "Werdegang",
+        title: "Beruf und Ausbildung",
+        lead: "",
+      },
+      publications: {
+        eyebrow: "Veröffentlichungen",
+        title: "Publikationen und Vorträge",
+        lead: "",
+      },
+      interests: { eyebrow: "Interessen", title: "Privat" },
+      contact: {
+        eyebrow: "Kontakt",
+        title: "So erreichen Sie mich",
+        lead: "",
+      },
+      documents: { eyebrow: "Dokumente", title: "Lebenslauf und Profile" },
+    },
     aboutMe: {
       title: "Über mich",
-      paragraph1:
-        "Ich bin Ingenieur, Gründer von ThermalNext – einem auf Thermomanagement und thermischen Komfort spezialisierten Unternehmen im B2B-Bereich – und aktuell als ILS Manager bei KNDS Deutschland tätig. Meine Promotion habe ich an der TU München verfasst. Mein Arbeitsfeld liegt an der Schnittstelle von Fahrzeugklimatisierung, Strömungssimulation und datengetriebener Modellierung, konkret dort, wo sich thermischer Komfort nicht nur subjektiv bewerten, sondern messtechnisch fassen und numerisch reproduzieren lässt.",
-      paragraph2:
-        "Von 2019 bis 2024 war ich wissenschaftlicher Mitarbeiter am Lehrstuhl für Ergonomie der TU München. In dieser Zeit entstand meine Dissertation über energieeffiziente Klimatisierung hochautomatisierter Fahrzeuge – die zentrale Frage: Wie lassen sich thermischer Komfort und Energieverbrauch bei variablen Sitzpositionen, reduzierten Besetzungsszenarien und passiver Fahrertätigkeit gemeinsam optimieren? Methodisch arbeite ich mit CFD (STAR-CCM+, Ansys CFX/FLUENT), Machine-Learning-Verfahren und experimenteller Validierung. Ein Kernelement ist ein selbst konzipierter segmentierter Klimadummy, der additive Fertigung mit RAMSIS-basierter Körpersegmentierung verbindet und eine reproduzierbare, messkanalaufgelöste Komfortbewertung ermöglicht.",
-      paragraph3:
-        "Industriell habe ich Projekte mit Audi, BMW, Gentherm, AGCO Fendt und dem DLR geleitet – meist an der Schnittstelle zwischen Messdaten, Simulation und Industrieanforderungen. Mit ThermalNext überführe ich dieses Know-how in direkten industriellen Einsatz: CFD-Simulation, thermische Systemauslegung und Komfortbewertung als strukturierte Dienstleistung für OEMs und Tier-1-Zulieferer.",
+      lead: "Ich arbeite als Projektmanager bei KNDS Deutschland. Nebenberuflich führe ich ThermalNext, mein Unternehmen für Thermomanagement und thermischen Komfort. Studiert habe ich Fahrzeugtechnik, promoviert an der TU München.",
+      pillars: [
+        {
+          label: "Aktuell",
+          title: "KNDS Deutschland",
+          text: "Projektmanagement: Planung und Koordination zwischen Engineering, Fertigung, Lieferanten und Kunden.",
+        },
+        {
+          label: "Nebenberuflich",
+          title: "ThermalNext",
+          text: "CFD-Simulation, thermische Auslegung und Komfortbewertung für Kunden aus der Industrie.",
+        },
+        {
+          label: "Ausbildung",
+          title: "TU München",
+          text: "Promotion am Lehrstuhl für Ergonomie zu Fahrzeugklimatisierung und thermischem Komfort.",
+        },
+      ],
+      researchTitle: "Dissertation",
+      research:
+        "Von 2019 bis 2024 habe ich am Lehrstuhl für Ergonomie untersucht, wie sich Komfort und Energieverbrauch in hochautomatisierten Fahrzeugen gemeinsam optimieren lassen, etwa bei variablen Sitzpositionen und geringer Besetzung.",
+      transferTitle: "Industriepartner",
+      transfer:
+        "In Forschungsprojekten habe ich mit Audi, BMW, Gentherm, AGCO Fendt und dem DLR zusammengearbeitet.",
     },
     career: {
       title: "Werdegang",
@@ -154,7 +213,7 @@ export const translations = {
       error: "Error sending message",
       getInTouch: "Get in Touch",
       description:
-        "For technical inquiries, industry projects, research collaborations or technical assessments in the fields of thermal comfort, vehicle climate control, ergonomics and thermal-dummy-based measurement methods, you can reach me at:",
+        "The fastest way to reach me is by email, via LinkedIn or directly through the form.",
       thankYou: "Thank you!",
       messageSent: "Your message has been successfully sent.",
     },
@@ -181,7 +240,7 @@ export const translations = {
     },
     jobTitles: {
       engineer: "Automotive Engineer (M.Sc.)",
-      phd: "ILS Manager (KNDS) · Founder of ThermalNext · Former PhD Researcher, TU Munich",
+      phd: "Project Manager (KNDS) · Founder of ThermalNext · PhD research, TU Munich",
     },
     projects: {
       title: "Project Images",
@@ -189,14 +248,73 @@ export const translations = {
     footer: {
       rights: "All rights reserved.",
     },
+    hero: {
+      eyebrow: "Automotive Engineer (M.Sc.)",
+      headlinePre: "Manuel Kipp",
+      headlineAccent: "",
+      headlinePost: "",
+      lead: "Project Manager at KNDS Deutschland. On the side, founder of ThermalNext, focusing on simulation and thermal comfort.",
+      roles: ["Project Manager · KNDS", "Founder · ThermalNext", "PhD research · TU Munich"],
+      ctaPrimary: "View projects",
+      ctaSecondary: "Get in touch",
+    },
+    intro: {
+      about: { eyebrow: "About me", title: "Engineer and project manager" },
+      skills: {
+        eyebrow: "Skills",
+        title: "Software and methods",
+        lead: "",
+      },
+      languages: { eyebrow: "Languages", title: "German, English, French" },
+      industry: {
+        eyebrow: "Experience",
+        title: "Industry projects",
+        lead: "",
+      },
+      career: {
+        eyebrow: "Career",
+        title: "Work and education",
+        lead: "",
+      },
+      publications: {
+        eyebrow: "Publications",
+        title: "Papers and talks",
+        lead: "",
+      },
+      interests: { eyebrow: "Interests", title: "Personal" },
+      contact: {
+        eyebrow: "Contact",
+        title: "How to reach me",
+        lead: "",
+      },
+      documents: { eyebrow: "Documents", title: "CV and profiles" },
+    },
     aboutMe: {
       title: "About Me",
-      paragraph1:
-        "I am an engineer, the founder of ThermalNext – a B2B company specializing in thermal management and thermal comfort – and currently an ILS Manager at KNDS Deutschland. I completed my doctoral research at the Technical University of Munich. My work sits at the intersection of vehicle climate control, computational fluid dynamics, and data-driven modeling – specifically where thermal comfort can no longer only be assessed subjectively, but captured through measurement and reproduced numerically.",
-      paragraph2:
-        "From 2019 to 2024, I worked as a research associate at the Chair of Ergonomics at TU Munich. During this time, I completed my dissertation on energy-efficient climate control for highly automated vehicles – with the central question: how can thermal comfort and energy consumption be jointly optimized under variable seating positions, reduced occupancy scenarios, and passive driver activity? Methodologically, I work with CFD (STAR-CCM+, Ansys CFX/FLUENT), machine learning methods, and experimental validation. A core element is a self-designed segmented thermal dummy that combines additive manufacturing with RAMSIS-based body segmentation, enabling reproducible, measurement-channel-resolved comfort assessment.",
-      paragraph3:
-        "On the industry side, I have led projects with Audi, BMW, Gentherm, AGCO Fendt, and DLR – mostly at the interface between measurement data, simulation, and industry requirements. With ThermalNext, I bring this expertise into direct industrial application: CFD simulation, thermal system design, and comfort assessment as a structured service for OEMs and Tier-1 suppliers.",
+      lead: "I work as a Project Manager at KNDS Deutschland. On the side, I run ThermalNext, my company for thermal management and thermal comfort. I studied automotive engineering and did my doctorate at TU Munich.",
+      pillars: [
+        {
+          label: "Current",
+          title: "KNDS Deutschland",
+          text: "Project management: planning and coordination between engineering, manufacturing, suppliers and customers.",
+        },
+        {
+          label: "Side business",
+          title: "ThermalNext",
+          text: "CFD simulation, thermal design and comfort assessment for industry clients.",
+        },
+        {
+          label: "Education",
+          title: "TU Munich",
+          text: "Doctorate at the Chair of Ergonomics on vehicle climate control and thermal comfort.",
+        },
+      ],
+      researchTitle: "Dissertation",
+      research:
+        "From 2019 to 2024 I studied at the Chair of Ergonomics how comfort and energy consumption in highly automated vehicles can be optimized together, for example with variable seating positions and low occupancy.",
+      transferTitle: "Industry partners",
+      transfer:
+        "In research projects I worked with Audi, BMW, Gentherm, AGCO Fendt and DLR.",
     },
     career: {
       title: "Career",

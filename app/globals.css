@@ -41,7 +41,8 @@
     background-color: #f0f7ff;
   }
   .font-display {
-    font-family: var(--font-fraunces), Georgia, serif;
+    font-family: var(--font-jakarta), system-ui, sans-serif;
+  letter-spacing: -0.025em;
   }
 }
 
