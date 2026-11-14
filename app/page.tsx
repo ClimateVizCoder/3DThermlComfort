@@ -1130,6 +1130,28 @@ const ContactSection = () => {
 const ACCENT = "#E63C2D"
 const ACCENT_DARK = "#C32A1C"
 
+const SectionHeader = ({ eyebrow, title, lead }: { eyebrow: string; title: string; lead?: string }) => (
+  <motion.div
+    className="mb-10 md:mb-14 max-w-3xl"
+    initial={{ opacity: 0, y: 16 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-60px" }}
+    transition={{ duration: 0.5, ease: "easeOut" }}
+  >
+    <p
+      className="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em]"
+      style={{ color: ACCENT }}
+    >
+      <span aria-hidden="true" className="h-px w-8" style={{ backgroundColor: ACCENT }} />
+      {eyebrow}
+    </p>
+    <h2 className="font-display mt-4 text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight text-[#1a365d] text-balance">
+      {title}
+    </h2>
+    {lead && <p className="mt-4 text-base md:text-lg leading-relaxed text-gray-600 text-pretty">{lead}</p>}
+  </motion.div>
+)
+
 const isActiveEntry = (item) => Boolean(item.active) || /Heute|Present|Today/i.test(item.year || "")
 
 // Single interactive timeline entry: shows only the essentials, reveals details on hover/click
@@ -1515,21 +1537,52 @@ const Home: React.FC = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className={`text-4xl font-bold text-[#1a365d] mb-6 tracking-normal name-title ${textContainerClass}`}>
-                <span className="inline-block px-1">Manuel Kipp</span>
-              </h2>
-              <p className={`text-xl md:text-2xl text-[#1a365d] leading-relaxed ${textContainerClass}`}>
-                {t("jobTitles.engineer")}
+              <p
+                className="inline-flex items-center gap-3 text-xs sm:text-sm font-semibold uppercase tracking-[0.16em]"
+                style={{ color: ACCENT }}
+              >
+                <span aria-hidden="true" className="h-px w-8" style={{ backgroundColor: ACCENT }} />
+                {t("hero.eyebrow")}
               </p>
-              <p className={`text-lg md:text-xl text-[#1a365d] mt-4 opacity-80 ${textContainerClass}`}>
-                {t("jobTitles.phd")}
+              <h1 className="font-display mt-5 text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] text-[#1a365d] text-balance">
+                {t("hero.headlinePre")}
+                <span style={{ color: ACCENT }}>{t("hero.headlineAccent")}</span>
+                {t("hero.headlinePost")}
+              </h1>
+              <p className="mt-6 max-w-xl text-base sm:text-lg leading-relaxed text-gray-600 text-pretty">
+                {t("hero.lead")}
               </p>
+              <ul className="mt-6 flex flex-wrap gap-2" aria-label="Rollen">
+                {(Array.isArray(t("hero.roles")) ? t("hero.roles") : []).map((role: string) => (
+                  <li
+                    key={role}
+                    className="rounded-full border border-gray-300 bg-white/70 px-3 py-1 text-xs sm:text-sm font-medium text-[#1a365d]"
+                  >
+                    {role}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <Button
+                  onClick={() => scrollToSection("industrieerfahrung")}
+                  className="h-11 rounded-full px-6 text-white"
+                  style={{ backgroundColor: ACCENT }}
+                >
+                  {t("hero.ctaPrimary")}
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => scrollToSection("kontakt")}
+                  className="h-11 rounded-full px-6 border-[#1a365d]/30 text-[#1a365d] bg-transparent"
+                >
+                  {t("hero.ctaSecondary")}
+                </Button>
+              </div>
               <a
                 href="https://thermalnext.de"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1.5 shadow-sm ring-1 transition-colors hover:bg-white w-fit"
-                style={{ borderColor: ACCENT }}
+                className="mt-8 inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1.5 shadow-sm ring-1 ring-black/5 transition-colors hover:bg-white w-fit"
                 aria-label="ThermalNext (öffnet in neuem Tab)"
               >
                 <Image
@@ -1540,18 +1593,20 @@ const Home: React.FC = () => {
                   className="h-6 w-auto object-contain"
                 />
               </a>
-              <div className="flex space-x-4 mt-6">
+              <div className="mt-6 flex items-center gap-5">
                 <a
                   href="https://www.linkedin.com/in/manuel-kipp-09624b174"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`text-2xl md:text-3xl text-[#1a365d] hover:text-[#2a4a7f] ${textContainerClass}`}
+                  aria-label="LinkedIn"
+                  className="text-2xl text-[#1a365d] transition-colors hover:text-[#E63C2D]"
                 >
                   <FaLinkedin />
                 </a>
                 <a
                   href="mailto:manuel-kipp95@hotmail.de"
-                  className={`text-2xl md:text-3xl text-[#1a365d] hover:text-[#2a4a7f] ${textContainerClass}`}
+                  aria-label="E-Mail"
+                  className="text-2xl text-[#1a365d] transition-colors hover:text-[#E63C2D]"
                 >
                   <FaEnvelope />
                 </a>
@@ -1559,7 +1614,8 @@ const Home: React.FC = () => {
                   href="https://www.mec.ed.tum.de/lfe/team/kipp/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`text-2xl md:text-3xl text-[#1a365d] hover:text-[#2a4a7f] ${textContainerClass}`}
+                  aria-label="TUM Profil"
+                  className="text-2xl text-[#1a365d] transition-colors hover:text-[#E63C2D]"
                 >
                   <FaUniversity />
                 </a>
@@ -1567,14 +1623,12 @@ const Home: React.FC = () => {
                   href="https://www.researchgate.net/profile/Manuel-Kipp"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`text-2xl md:text-3xl text-[#1a365d] hover:text-[#2a4a7f] ${textContainerClass}`}
+                  aria-label="ResearchGate"
+                  className="text-2xl text-[#1a365d] transition-colors hover:text-[#E63C2D]"
                 >
                   <FaResearchgate />
                 </a>
               </div>
-              <Button onClick={() => scrollToSection("über-mich")} className={`mt-6 w-40 ${textContainerClass}`}>
-                {t("Learn More")} <FaChevronDown className="ml-2" />
-              </Button>
             </motion.div>
             <motion.div
               className="relative w-full flex justify-center items-center mt-8 md:mt-0"
@@ -1608,72 +1662,40 @@ const Home: React.FC = () => {
               className="w-full py-16 flex flex-col items-center justify-center relative bg-blue-50"
             >
               <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-center mb-8">
-                  <div className="hidden md:block"></div>
-                  <div className="flex items-center justify-center w-full md:hidden">
-                    <FaCog className="text-4xl text-[#1a365d] mr-4" />
-                    <h2
-                      className={`text-3xl md:text-4xl font-semibold text-[#1a365d] text-center leading-relaxed py-1 ${textContainerClass}`}
+                <SectionHeader eyebrow={t("intro.about.eyebrow")} title={t("intro.about.title")} lead={t("aboutMe.lead")} />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {(Array.isArray(t("aboutMe.pillars")) ? t("aboutMe.pillars") : []).map((pillar, index) => (
+                    <motion.article
+                      key={pillar.label}
+                      className="flex flex-col gap-3 rounded-xl bg-white p-6 shadow-sm ring-1 ring-black/5 transition-shadow hover:shadow-md"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-40px" }}
+                      transition={{ duration: 0.45, delay: index * 0.1 }}
                     >
-                      {t("aboutMe.title")}
-                    </h2>
-                    <GiRaceCar className="text-4xl text-[#1a365d] ml-4" />
-                  </div>
+                      <span
+                        className="text-xs font-semibold uppercase tracking-[0.16em]"
+                        style={{ color: ACCENT }}
+                      >
+                        {pillar.label}
+                      </span>
+                      <h3 className="font-display text-xl font-semibold text-[#1a365d] leading-snug">{pillar.title}</h3>
+                      <p className="text-sm leading-relaxed text-gray-600">{pillar.text}</p>
+                    </motion.article>
+                  ))}
                 </div>
-                <div className="text-lg flex flex-col md:flex-row items-start md:space-x-8">
-                  <div className="hidden md:block w-1/4 flex-shrink-0 relative group">
-                    <div className="w-32 h-32 relative">
-                      <motion.div
-                        className="absolute inset-0"
-                        initial={{ rotate: 0 }}
-                        whileInView={{ rotate: 360 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 2, ease: "linear" }}
-                      >
-                        <FaCog className="text-9xl text-[#1a365d]" />
-                      </motion.div>
-                      <motion.div
-                        className="absolute top-2 left-10"
-                        initial={{ rotate: 0 }}
-                        whileInView={{ rotate: -360 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 2, ease: "linear" }}
-                      >
-                        <FaCog className="text-8xl text-[#2a4a7f]" />
-                      </motion.div>
-                      <motion.div
-                        className="absolute -bottom-64 -left-4"
-                        initial={{ x: -100, opacity: 0 }}
-                        whileInView={{ x: 0, opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, ease: "easeOut", delay: 1.0 }}
-                      >
-                        <GiRaceCar className="text-9xl text-[#1a365d]" />
-                      </motion.div>
-                      <motion.div
-                        className="absolute -bottom-[500px] left-4"
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        whileInView={{ scale: [1, 1.2, 1], opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, ease: "easeInOut", delay: 1.5, times: [0, 0.5, 1] }}
-                      >
-                        <FaCube className="text-8xl text-[#2a4a7f]" />
-                      </motion.div>
-                    </div>
+                <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-[#1a365d]/10 pt-8">
+                  <div>
+                    <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-[#1a365d]">
+                      {t("aboutMe.researchTitle")}
+                    </h3>
+                    <p className="mt-3 text-base leading-relaxed text-gray-600 text-pretty">{t("aboutMe.research")}</p>
                   </div>
-                  <div className="w-full md:w-3/4">
-                    <h2
-                      className={`hidden md:block text-3xl md:text-4xl font-semibold text-[#1a365d] mb-6 leading-relaxed ${textContainerClass}`}
-                    >
-                      {t("aboutMe.title")}
-                    </h2>
-                    <p className={`text-foreground text-justify mb-4 ${textContainerClass}`}>
-                      {t("aboutMe.paragraph1")}
-                    </p>
-                    <p className={`text-foreground text-justify mb-4 ${textContainerClass}`}>
-                      {t("aboutMe.paragraph2")}
-                    </p>
-                    <p className={`text-foreground text-justify ${textContainerClass}`}>{t("aboutMe.paragraph3")}</p>
+                  <div>
+                    <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-[#1a365d]">
+                      {t("aboutMe.transferTitle")}
+                    </h3>
+                    <p className="mt-3 text-base leading-relaxed text-gray-600 text-pretty">{t("aboutMe.transfer")}</p>
                   </div>
                 </div>
               </div>
@@ -1689,14 +1711,14 @@ const Home: React.FC = () => {
               className="w-full py-16 flex flex-col items-center justify-center relative bg-gray-100"
             >
               <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8">
-                <h2
-                  className={`text-3xl md:text-4xl font-semibold text-[#1a365d] mb-12 text-center leading-relaxed py-1 ${textContainerClass}`}
-                >
-                  {t("skills.title")}
-                </h2>
+                <SectionHeader
+                  eyebrow={t("intro.skills.eyebrow")}
+                  title={t("intro.skills.title")}
+                  lead={t("intro.skills.lead")}
+                />
                 <div className="space-y-5">
                   {/* Schwerpunkt – dezent hervorgehoben (gefüllte Pill) */}
-                  <div className="flex flex-wrap justify-center gap-3">
+                  <div className="flex flex-wrap gap-3">
                     <motion.span
                       className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-base font-semibold text-white shadow-sm"
                       style={{ backgroundColor: ACCENT }}
@@ -1735,7 +1757,7 @@ const Home: React.FC = () => {
                     ))}
                   </div>
                   {/* Ehrliche, zurückhaltende Einordnung */}
-                  <p className={`text-center text-sm text-gray-500 max-w-2xl mx-auto leading-relaxed ${textContainerClass}`}>
+                  <p className={`text-sm text-gray-500 max-w-2xl leading-relaxed ${textContainerClass}`}>
                     {featuredSkill.tagline[language]}
                   </p>
                 </div>
@@ -1752,11 +1774,7 @@ const Home: React.FC = () => {
               className="w-full py-16 flex flex-col items-center justify-center relative bg-blue-50"
             >
               <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8">
-                <h2
-                  className={`text-3xl md:text-4xl font-semibold text-[#1a365d] mb-12 text-center leading-relaxed py-1 ${textContainerClass}`}
-                >
-                  {t("languages.title")}
-                </h2>
+                <SectionHeader eyebrow={t("intro.languages.eyebrow")} title={t("intro.languages.title")} />
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                   {languages.map((lang, index) => (
                     <motion.div
@@ -1813,11 +1831,11 @@ const Home: React.FC = () => {
               className="w-full py-16 flex flex-col items-center justify-center relative bg-gray-100"
             >
               <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8">
-                <h2
-                  className={`text-3xl md:text-4xl font-semibold text-[#1a365d] mb-12 text-center leading-relaxed py-1 ${textContainerClass}`}
-                >
-                  {t("industryExperience.title")}
-                </h2>
+                <SectionHeader
+                  eyebrow={t("intro.industry.eyebrow")}
+                  title={t("intro.industry.title")}
+                  lead={t("intro.industry.lead")}
+                />
                 <div className="space-y-6">
                   {/* Firmenlogos */}
                   <motion.div
@@ -1896,11 +1914,11 @@ const Home: React.FC = () => {
               className="w-full py-16 flex flex-col items-center justify-center relative bg-blue-50"
             >
               <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8">
-                <h2
-                  className={`text-3xl md:text-4xl font-semibold text-[#1a365d] mb-12 text-center leading-relaxed py-1 ${textContainerClass}`}
-                >
-                  {t("career.title")}
-                </h2>
+                <SectionHeader
+                  eyebrow={t("intro.career.eyebrow")}
+                  title={t("intro.career.title")}
+                  lead={t("intro.career.lead")}
+                />
                 <div className="space-y-6">
                   <TimelineBlock title={t("career.professional")} content={erfahrungContent.berufserfahrung} />
                   <TimelineBlock title={t("career.academic")} content={erfahrungContent.akademisch} />
@@ -1919,11 +1937,11 @@ const Home: React.FC = () => {
               className="w-full py-16 flex flex-col items-center justify-center relative bg-gray-100"
             >
               <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8">
-                <h2
-                  className={`text-3xl md:text-4xl font-semibold text-[#1a365d] mb-12 text-center leading-relaxed py-1 ${textContainerClass}`}
-                >
-                  {t("publications.title")}
-                </h2>
+                <SectionHeader
+                  eyebrow={t("intro.publications.eyebrow")}
+                  title={t("intro.publications.title")}
+                  lead={t("intro.publications.lead")}
+                />
                 <div className="space-y-10">
                   <div>
                     <h3 className="font-display text-2xl font-semibold text-[#1a365d] mb-6">
@@ -1951,11 +1969,7 @@ const Home: React.FC = () => {
               className="w-full py-16 flex flex-col items-center justify-center relative bg-blue-50"
             >
               <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8">
-                <h2
-                  className={`text-3xl md:text-4xl font-semibold text-[#1a365d] mb-12 text-center leading-relaxed py-1 ${textContainerClass}`}
-                >
-                  {t("interests.title")}
-                </h2>
+                <SectionHeader eyebrow={t("intro.interests.eyebrow")} title={t("intro.interests.title")} />
                 <div className="bg-white/50 rounded-lg shadow-md p-8">
                   <HobbiesSection />
                 </div>
@@ -1972,11 +1986,11 @@ const Home: React.FC = () => {
               className="w-full py-16 flex flex-col items-center justify-center relative bg-gray-100"
             >
               <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8">
-                <h2
-                  className={`text-3xl md:text-4xl font-semibold text-[#1a365d] mb-12 text-center leading-relaxed py-1 ${textContainerClass}`}
-                >
-                  {t("contact.title")}
-                </h2>
+                <SectionHeader
+                  eyebrow={t("intro.contact.eyebrow")}
+                  title={t("intro.contact.title")}
+                  lead={t("intro.contact.lead")}
+                />
                 <ContactSection />
               </div>
             </section>
@@ -1991,11 +2005,7 @@ const Home: React.FC = () => {
               className="w-full py-16 flex flex-col items-center justify-center relative bg-blue-50"
             >
               <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8">
-                <h2
-                  className={`text-3xl md:text-4xl font-semibold text-[#1a365d] mb-12 text-center leading-relaxed py-1 ${textContainerClass}`}
-                >
-                  {t("documents.title")}
-                </h2>
+                <SectionHeader eyebrow={t("intro.documents.eyebrow")} title={t("intro.documents.title")} />
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                   <Button asChild size="lg" className="w-full">
                     <a
@@ -2063,8 +2073,13 @@ const Home: React.FC = () => {
         </main>
 
         {/* Footer */}
-        <footer className={`bg-[#1a365d] text-white py-4 text-center relative z-20 ${textContainerClass}`}>
-          <p>&copy; {new Date().getFullYear()} Manuel Kipp. Alle Rechte vorbehalten.</p>
+        <footer className="relative z-20 bg-[#1a365d] text-white">
+          <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 px-4 sm:px-6 lg:px-8 py-6 text-sm">
+            <p className="text-white/80">
+              &copy; {new Date().getFullYear()} Manuel Kipp. {t("footer.rights")}
+            </p>
+            <p className="text-white/60">{t("hero.roles")?.[1] ?? ""}</p>
+          </div>
         </footer>
       </div>
       <VerticalNavigation />

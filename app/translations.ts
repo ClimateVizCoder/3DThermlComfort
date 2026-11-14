@@ -42,7 +42,7 @@ export const translations = {
       error: "Fehler beim Senden der Nachricht",
       getInTouch: "Kontakt aufnehmen",
       description:
-        "Für fachliche Anfragen, Industrieprojekte, Forschungskooperationen oder technische Bewertungen im Bereich thermischer Komfort, Fahrzeugklimatisierung, Ergonomie und Klimadummy-basierte Messmethoden bin ich erreichbar über:",
+        "Am schnellsten erreichen Sie mich per E-Mail, über LinkedIn oder direkt über das Formular.",
       thankYou: "Vielen Dank!",
       messageSent: "Ihre Nachricht wurde erfolgreich gesendet.",
     },
@@ -77,14 +77,73 @@ export const translations = {
     footer: {
       rights: "Alle Rechte vorbehalten.",
     },
+    hero: {
+      eyebrow: "Manuel Kipp · Ingenieur Fahrzeugtechnik (M.Sc.)",
+      headlinePre: "Thermischen Komfort ",
+      headlineAccent: "messbar",
+      headlinePost: " machen.",
+      lead: "Ich verbinde Messtechnik, Strömungssimulation und datengetriebene Modelle – damit Komfort im Fahrzeug nicht nur gefühlt, sondern belegt werden kann.",
+      roles: ["ILS Manager · KNDS", "Gründer · ThermalNext", "Promotion · TU München"],
+      ctaPrimary: "Projekte ansehen",
+      ctaSecondary: "Kontakt aufnehmen",
+    },
+    intro: {
+      about: { eyebrow: "Über mich", title: "Zwischen Messdaten, Simulation und Industrie." },
+      skills: {
+        eyebrow: "Werkzeuge",
+        title: "Womit ich arbeite.",
+        lead: "Software und Methoden, die ich im Arbeitsalltag tatsächlich einsetze.",
+      },
+      languages: { eyebrow: "Sprachen", title: "Deutsch, Englisch – und etwas Französisch." },
+      industry: {
+        eyebrow: "Industrie",
+        title: "Angewandte Forschung mit OEMs und Zulieferern.",
+        lead: "Projekte, in denen Messdaten, Simulation und konkrete Anforderungen aus der Entwicklung zusammenkommen.",
+      },
+      career: {
+        eyebrow: "Werdegang",
+        title: "Von der Forschung in die Industrie.",
+        lead: "Die wichtigsten Stationen auf einen Blick – Details per Klick.",
+      },
+      publications: {
+        eyebrow: "Veröffentlichungen",
+        title: "Ergebnisse, öffentlich dokumentiert.",
+        lead: "Fachartikel und Vorträge aus Promotion und Projektarbeit.",
+      },
+      interests: { eyebrow: "Abseits der Arbeit", title: "Was mich ausgleicht." },
+      contact: {
+        eyebrow: "Kontakt",
+        title: "Lassen Sie uns sprechen.",
+        lead: "Für Industrieprojekte, Forschungskooperationen oder eine technische Einschätzung zu Komfort und Klimatisierung.",
+      },
+      documents: { eyebrow: "Ressourcen", title: "Lebenslauf und Profile." },
+    },
     aboutMe: {
       title: "Über mich",
-      paragraph1:
-        "Ich bin Ingenieur, Gründer von ThermalNext – einem auf Thermomanagement und thermischen Komfort spezialisierten Unternehmen im B2B-Bereich – und aktuell als ILS Manager bei KNDS Deutschland tätig. Meine Promotion habe ich an der TU München verfasst. Mein Arbeitsfeld liegt an der Schnittstelle von Fahrzeugklimatisierung, Strömungssimulation und datengetriebener Modellierung, konkret dort, wo sich thermischer Komfort nicht nur subjektiv bewerten, sondern messtechnisch fassen und numerisch reproduzieren lässt.",
-      paragraph2:
-        "Von 2019 bis 2024 war ich wissenschaftlicher Mitarbeiter am Lehrstuhl für Ergonomie der TU München. In dieser Zeit entstand meine Dissertation über energieeffiziente Klimatisierung hochautomatisierter Fahrzeuge – die zentrale Frage: Wie lassen sich thermischer Komfort und Energieverbrauch bei variablen Sitzpositionen, reduzierten Besetzungsszenarien und passiver Fahrertätigkeit gemeinsam optimieren? Methodisch arbeite ich mit CFD (STAR-CCM+, Ansys CFX/FLUENT), Machine-Learning-Verfahren und experimenteller Validierung. Ein Kernelement ist ein selbst konzipierter segmentierter Klimadummy, der additive Fertigung mit RAMSIS-basierter Körpersegmentierung verbindet und eine reproduzierbare, messkanalaufgelöste Komfortbewertung ermöglicht.",
-      paragraph3:
-        "Industriell habe ich Projekte mit Audi, BMW, Gentherm, AGCO Fendt und dem DLR geleitet – meist an der Schnittstelle zwischen Messdaten, Simulation und Industrieanforderungen. Mit ThermalNext überführe ich dieses Know-how in direkten industriellen Einsatz: CFD-Simulation, thermische Systemauslegung und Komfortbewertung als strukturierte Dienstleistung für OEMs und Tier-1-Zulieferer.",
+      lead: "Ich arbeite dort, wo thermischer Komfort präzise werden muss: in der Fahrzeugklimatisierung. Heute als ILS Manager bei KNDS Deutschland und mit ThermalNext als eigenem B2B-Angebot – fachlich geprägt durch fünf Jahre Forschung an der TU München.",
+      pillars: [
+        {
+          label: "Messen",
+          title: "Segmentierter Klimadummy",
+          text: "Selbst konzipiert: additiv gefertigt, nach RAMSIS segmentiert, mit messkanalaufgelöster Komfortbewertung – reproduzierbar statt subjektiv.",
+        },
+        {
+          label: "Simulieren",
+          title: "CFD im Fahrzeuginnenraum",
+          text: "Strömung und Wärmeübergang mit STAR-CCM+ und Ansys CFX/FLUENT – von der Konzeptphase bis zur Variantenbewertung.",
+        },
+        {
+          label: "Modellieren",
+          title: "Datengetriebene Komfortmodelle",
+          text: "Machine Learning und experimentelle Validierung, um Komfort und Energiebedarf gemeinsam zu optimieren.",
+        },
+      ],
+      researchTitle: "Die Forschungsfrage",
+      research:
+        "Meine Dissertation am Lehrstuhl für Ergonomie (2019–2024) fragt: Wie lassen sich Komfort und Energieverbrauch hochautomatisierter Fahrzeuge gemeinsam optimieren – bei variablen Sitzpositionen, geringer Besetzung und passiven Insassen?",
+      transferTitle: "Der Transfer",
+      transfer:
+        "Projekte mit Audi, BMW, Gentherm, AGCO Fendt und dem DLR. Mit ThermalNext biete ich CFD-Simulation, thermische Auslegung und Komfortbewertung als strukturierte Dienstleistung für OEMs und Tier-1-Zulieferer an.",
     },
     career: {
       title: "Werdegang",
@@ -154,7 +213,7 @@ export const translations = {
       error: "Error sending message",
       getInTouch: "Get in Touch",
       description:
-        "For technical inquiries, industry projects, research collaborations or technical assessments in the fields of thermal comfort, vehicle climate control, ergonomics and thermal-dummy-based measurement methods, you can reach me at:",
+        "The fastest way to reach me is by email, via LinkedIn or directly through the form.",
       thankYou: "Thank you!",
       messageSent: "Your message has been successfully sent.",
     },
@@ -189,14 +248,73 @@ export const translations = {
     footer: {
       rights: "All rights reserved.",
     },
+    hero: {
+      eyebrow: "Manuel Kipp · Automotive Engineer (M.Sc.)",
+      headlinePre: "Making thermal comfort ",
+      headlineAccent: "measurable",
+      headlinePost: ".",
+      lead: "I combine measurement, fluid simulation and data-driven models – so that comfort in a vehicle isn't just felt, but backed by evidence.",
+      roles: ["ILS Manager · KNDS", "Founder · ThermalNext", "PhD research · TU Munich"],
+      ctaPrimary: "View projects",
+      ctaSecondary: "Get in touch",
+    },
+    intro: {
+      about: { eyebrow: "About me", title: "Between measurement data, simulation and industry." },
+      skills: {
+        eyebrow: "Tools",
+        title: "What I work with.",
+        lead: "Software and methods I actually use in my day-to-day work.",
+      },
+      languages: { eyebrow: "Languages", title: "German, English – and some French." },
+      industry: {
+        eyebrow: "Industry",
+        title: "Applied research with OEMs and suppliers.",
+        lead: "Projects where measurement data, simulation and real development requirements come together.",
+      },
+      career: {
+        eyebrow: "Career",
+        title: "From research into industry.",
+        lead: "The key milestones at a glance – details on click.",
+      },
+      publications: {
+        eyebrow: "Publications",
+        title: "Results, publicly documented.",
+        lead: "Papers and talks from my doctoral research and project work.",
+      },
+      interests: { eyebrow: "Off the clock", title: "What keeps me balanced." },
+      contact: {
+        eyebrow: "Contact",
+        title: "Let's talk.",
+        lead: "For industry projects, research collaborations or a technical assessment of comfort and climate control.",
+      },
+      documents: { eyebrow: "Resources", title: "CV and profiles." },
+    },
     aboutMe: {
       title: "About Me",
-      paragraph1:
-        "I am an engineer, the founder of ThermalNext – a B2B company specializing in thermal management and thermal comfort – and currently an ILS Manager at KNDS Deutschland. I completed my doctoral research at the Technical University of Munich. My work sits at the intersection of vehicle climate control, computational fluid dynamics, and data-driven modeling – specifically where thermal comfort can no longer only be assessed subjectively, but captured through measurement and reproduced numerically.",
-      paragraph2:
-        "From 2019 to 2024, I worked as a research associate at the Chair of Ergonomics at TU Munich. During this time, I completed my dissertation on energy-efficient climate control for highly automated vehicles – with the central question: how can thermal comfort and energy consumption be jointly optimized under variable seating positions, reduced occupancy scenarios, and passive driver activity? Methodologically, I work with CFD (STAR-CCM+, Ansys CFX/FLUENT), machine learning methods, and experimental validation. A core element is a self-designed segmented thermal dummy that combines additive manufacturing with RAMSIS-based body segmentation, enabling reproducible, measurement-channel-resolved comfort assessment.",
-      paragraph3:
-        "On the industry side, I have led projects with Audi, BMW, Gentherm, AGCO Fendt, and DLR – mostly at the interface between measurement data, simulation, and industry requirements. With ThermalNext, I bring this expertise into direct industrial application: CFD simulation, thermal system design, and comfort assessment as a structured service for OEMs and Tier-1 suppliers.",
+      lead: "I work where thermal comfort has to get precise: vehicle climate control. Today as ILS Manager at KNDS Deutschland and with ThermalNext as my own B2B offering – shaped by five years of research at TU Munich.",
+      pillars: [
+        {
+          label: "Measure",
+          title: "Segmented thermal dummy",
+          text: "Self-designed: additively manufactured, segmented per RAMSIS, with channel-resolved comfort assessment – reproducible instead of subjective.",
+        },
+        {
+          label: "Simulate",
+          title: "CFD in the cabin",
+          text: "Airflow and heat transfer with STAR-CCM+ and Ansys CFX/FLUENT – from concept phase to variant assessment.",
+        },
+        {
+          label: "Model",
+          title: "Data-driven comfort models",
+          text: "Machine learning and experimental validation to optimize comfort and energy demand together.",
+        },
+      ],
+      researchTitle: "The research question",
+      research:
+        "My dissertation at the Chair of Ergonomics (2019–2024) asks: how can comfort and energy consumption of highly automated vehicles be optimized together – with variable seating positions, low occupancy and passive occupants?",
+      transferTitle: "The transfer",
+      transfer:
+        "Projects with Audi, BMW, Gentherm, AGCO Fendt and DLR. With ThermalNext I offer CFD simulation, thermal design and comfort assessment as a structured service for OEMs and Tier-1 suppliers.",
     },
     career: {
       title: "Career",
